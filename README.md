@@ -22,7 +22,8 @@ You should also have the google maps javascript api enabled for your google key 
 
 ## How to Create Heatmaps:
 
-d
+Navigate to the directory that you are working in and enter the following into the command line:
+
 python3 CreateHeatMaps.py
 
 Then, the following prompt will open: 
