@@ -1,20 +1,12 @@
 ## Api Keys:
-You will need the following keys:
+You will need a .env file in your local environment with api keys defined as the following:
 
-Google Maps Webservice API: ' Your API Key '
-
-Google Maps Javascript API: ' Your API Key '
-
-
-Yelp ConsumerKey =  ' Your API Key '
-
-Yelp ConsumerSecret = ' Your API Key '
-
-Yelp Token = ' Your API Key '
-
-Yelp TokenSecret = ' Your API Key '
-
-Walk Score API: ' Your API Key '
+yelp_ConsumerKey: Your Yelp ConsumerKey
+yelp_ConsumerSecret =Your Yelp ConsumerSecret  
+yelp_Token = Your Yelp Token
+yelp_TokenSecret = Your Yelp Token Secret
+google_API_KEY = Your Google Maps Webservice API Key
+walkscore_api = Your Walk Score API key
 
 ## How to Create Heatmaps:
 
