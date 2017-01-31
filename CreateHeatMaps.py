@@ -3,6 +3,14 @@ import numpy as np
 from datetime import datetime
 import time
 from functools import reduce
+
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+
 start = time.time()
 
 while True:
@@ -19,10 +27,19 @@ while True:
 import yelp
 from yelp.client import Client
 from yelp.oauth1_authenticator import Oauth1Authenticator
+<<<<<<< Updated upstream
 yelp_ConsumerKey = ' '
 yelp_ConsumerSecret = ' '
 yelp_Token = ' '
 yelp_TokenSecret = ' '
+=======
+yelp_ConsumerKey = os.environ.get('yelp_ConsumerKey') 
+yelp_ConsumerSecret = os.environ.get('yelp_ConsumerSecret') 
+yelp_Token = os.environ.get('yelp_Token') 
+yelp_TokenSecret = os.environ.get('yelp_TokenSecret') 
+print(yelp_Token)
+print(type(yelp_Token))
+>>>>>>> Stashed changes
 
 auth = Oauth1Authenticator(consumer_key = yelp_ConsumerKey, consumer_secret = yelp_ConsumerSecret, token = yelp_Token, token_secret= yelp_TokenSecret)
 client = Client(auth)
@@ -32,14 +49,22 @@ client = Client(auth)
 ######################################################################## Google API Set Up ################################################################
 
 import googlemaps
+<<<<<<< Updated upstream
 google_API_KEY = ' '
+=======
+google_API_KEY = os.environ.get('google_API_KEY') 
+>>>>>>> Stashed changes
 gmaps = googlemaps.Client(key = google_API_KEY)	
 
 
 ######################################################################## Walscore API Set Up ################################################################
 
 import walkscore
+<<<<<<< Updated upstream
 walkscore_api = ' '
+=======
+walkscore_api = os.environ.get('walkscore_api') 
+>>>>>>> Stashed changes
 walkscore = walkscore.WalkScore(walkscore_api)
 
 
@@ -110,7 +135,7 @@ def getYelpData(xvals, yvals, num_xsamples, num_ysamples):
 
 def getGoogleData(xvals, yvals, num_xsamples, num_ysamples):
 
-	community_tags = ['library', 'church', 'hindu_temple', 'mosque', 'synagogue', 'school', 'laundry', 'post_office', 'atm', 'gas_station']
+	community_tags = ['library', 'church', 'school', 'laundry', 'post_office', 'gas_station']
 	tourist_tags = ['amusement_park', 'aquarium', 'art_gallery', 'bowling_alley', 'museum', 'night_club', 'park', 'university', 'stadium', 'zoo']	  
 	food_tags = ['restaurant']	   
 	big_shops_tags = ['department_store', 'shopping_mall', 'clothing_store', 'shoe_store']
@@ -220,8 +245,8 @@ num_ysamples = int(np.round(ydist/sampling_rate))
 xvals = np.linspace(southwest_coord['lng'], southeast_coord['lng'], num_xsamples)   # x values (longitudes) that will be sampled
 yvals = np.linspace(southeast_coord['lat'], northeast_coord['lat'], num_ysamples)   # y vals (latitudes) that will be sampled
 # print('Estimated Time to finish: %f Minutes' %(num_xsamples*num_ysamples*.17))    # Prints estimated time till completion, not very accurate
-print(num_xsamples)
-print(num_ysamples)
+
+
 ############ Get the heatmaps ############
 print('Starting Yelp Calculations')
 try:
@@ -258,7 +283,7 @@ AllResults = []
 
 for score in AllScores:
 	AllResults.extend(score.values())
-
+g
 AvgResult = reduce((lambda x, y: np.add(x,y)), AllResults)
 AvgScore = {'averageData': AvgResult/len(AllResults)}
 AvgTags = {'averageData' : []}
