@@ -2,16 +2,20 @@
 You will need a .env file in your local environment with api keys defined as the following:
 
 yelp_ConsumerKey: Your Yelp ConsumerKey
-yelp_ConsumerSecret =Your Yelp ConsumerSecret  
+
+yelp_ConsumerSecret =Your Yelp ConsumerSecret 
+
 yelp_Token = Your Yelp Token
+
 yelp_TokenSecret = Your Yelp Token Secret
+
 google_API_KEY = Your Google Maps Webservice API Key
+
 walkscore_api = Your Walk Score API key
 
 ## How to Create Heatmaps:
 
-From your terminal, go to the directory that CreateHeatMaps.py is located and enter:
-
+d
 python3 CreateHeatMaps.py
 
 Then, the following prompt will open: 
