@@ -1,4 +1,4 @@
-You will need to import the following python modules:
+Before you can use the python script, you will need to import the following python modules:
 
 - yelp (https://github.com/Yelp/yelp-python)
 - googlemaps (https://github.com/googlemaps/google-maps-services-python)
@@ -6,6 +6,8 @@ You will need to import the following python modules:
 If you have python3 on your computer, you can install them using pip.
 
 Api Keys:
+
+You will also need the following API Keys:
 
 Google Maps Webservice API: 
 Google Maps Javascript API: 
