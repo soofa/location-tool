@@ -19,10 +19,10 @@ while True:
 import yelp
 from yelp.client import Client
 from yelp.oauth1_authenticator import Oauth1Authenticator
-yelp_ConsumerKey = 'vY55BUDaltjwYNHjXvsWDA'
-yelp_ConsumerSecret = '8DqU7hXyyhhzjgY9YlAUeKH4Km8'
-yelp_Token = 'O5_KtCM_lC2LXrCLt6zgT2HxqexcHM5P'
-yelp_TokenSecret = 'NqMxUW1gu8UBhdWYejUtSKI6n18'
+yelp_ConsumerKey = ' '
+yelp_ConsumerSecret = ' '
+yelp_Token = ' '
+yelp_TokenSecret = ' '
 
 auth = Oauth1Authenticator(consumer_key = yelp_ConsumerKey, consumer_secret = yelp_ConsumerSecret, token = yelp_Token, token_secret= yelp_TokenSecret)
 client = Client(auth)
@@ -32,14 +32,14 @@ client = Client(auth)
 ######################################################################## Google API Set Up ################################################################
 
 import googlemaps
-google_API_KEY = 'AIzaSyDjSsNh9GPut7ulvfae9-BWQ5Lnlae4VQw'
+google_API_KEY = ' '
 gmaps = googlemaps.Client(key = google_API_KEY)	
 
 
 ######################################################################## Walscore API Set Up ################################################################
 
 import walkscore
-walkscore_api = 'bfdbc178962bcf7e5d6e83182ced0607'
+walkscore_api = ' '
 walkscore = walkscore.WalkScore(walkscore_api)
 
 
