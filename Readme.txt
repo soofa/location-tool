@@ -7,16 +7,16 @@ If you have python3 on your computer, you can install them using pip.
 
 Api Keys:
 
-Google Maps Webservice API: AIzaSyDjSsNh9GPut7ulvfae9-BWQ5Lnlae4VQw
-Google Maps Javascript API: AIzaSyBdsGq2g7EJPonPoSutU98iQKL-9W3odG8
+Google Maps Webservice API: 
+Google Maps Javascript API: 
 
 
-Yelp ConsumerKey = vY55BUDaltjwYNHjXvsWDA
-Yelp ConsumerSecret = 8DqU7hXyyhhzjgY9YlAUeKH4Km8
-Yelp Token = O5_KtCM_lC2LXrCLt6zgT2HxqexcHM5P
-Yelp TokenSecret = NqMxUW1gu8UBhdWYejUtSKI6n18
+Yelp ConsumerKey = 
+Yelp ConsumerSecret = 
+Yelp Token = 
+Yelp TokenSecret = 
 
-Walk Score API: bfdbc178962bcf7e5d6e83182ced0607
+Walk Score API: 
 
 How to Create Heatmaps:
 
