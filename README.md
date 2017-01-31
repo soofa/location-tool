@@ -1,20 +1,16 @@
-
-Before you can use the python script, you will need to import the following python modules:
-
-- yelp (https://github.com/Yelp/yelp-python)
-- googlemaps (https://github.com/googlemaps/google-maps-services-python)
-
-If you have python3 on your computer, you can install them using pip.
-
 ## Api Keys:
 
 Google Maps Webservice API: ' Your API Key '
+
 Google Maps Javascript API: ' Your API Key '
 
 
 Yelp ConsumerKey =  ' Your API Key '
+
 Yelp ConsumerSecret = ' Your API Key '
+
 Yelp Token = ' Your API Key '
+
 Yelp TokenSecret = ' Your API Key '
 
 Walk Score API: ' Your API Key '
