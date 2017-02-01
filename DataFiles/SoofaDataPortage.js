@@ -18,6 +18,7 @@ var lng = - 85.5800;
 
 
 
+
 for (var key in AllScores){
 	var max = AllScores[key].max;
 	for (var i = 0; i < AllScores[key].data.length; i++){
@@ -26,6 +27,7 @@ for (var key in AllScores){
 	AllScores[key].max = 10;
 }
 
-
+var northeastcoord = [42.245339, -85.52825279999999];
+var southwestcoord = [42.1573499,  -85.6486109];
 
 

@@ -18,7 +18,8 @@ var averageData = {max: 9915.625, data: [{ lat: 42.3523968, lng: -71.1603321, co
 
 var AllScores = {"googlefood": googlefoodData, "googlecommunity": googlecommunityData, "googlebigshops": googlebigshopsData, "googlesmallshops": googlesmallshopsData, "googletourist": googletouristData, "googletransit": googletransitData, "yelpfood": yelpfoodData, "yelpshopping": yelpshoppingData, "yelpcommunity": yelpcommunityData, "walkscore": walkscoreData, 'average': averageData};
 
-
+var northeastcoord = [42.4043839, -71.06548719999999];
+var southwestcoord = [42.3523968,  -71.16033209999999];
 
 
 

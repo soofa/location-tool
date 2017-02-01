@@ -55,7 +55,7 @@
 
 <!-- Dropdown menu for cities. This is where you add a new city!  -->
 
-<form style="position:absolute; top: 30px; left: 200px;" >
+<form style="position:absolute; top: 30px; left: 325px;" >
     <select  id="selectcity">
         <option value="default">Cities</option>
         <option value="Cambridge">Cambridge, MA</option>
@@ -65,10 +65,6 @@
         <option value="Portage">Portage, MI</option>
         <option value="Lafayette">Lafayette, LA</option>
         <option value="ArlingtonHeights">Arlington Heights, IL</option>
-
-
-
-
     </select>
 </form>
 
@@ -85,7 +81,7 @@
 
 
   <!-- Set up Google Maps Javascript API -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOURGOOGLEAPIKEY&libraries=places"
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdsGq2g7EJPonPoSutU98iQKL-9W3odG8&libraries=places"
   type="text/javascript"></script>
 
 
@@ -126,41 +122,45 @@
 
 <div style="position:absolute; height: 500px; width: 700px;" class="heatmap" id="map" ></div>
 
-<form>
+<button style="position:absolute; top: 640px; left: 50px;"  id="scorebutton">Show Additional Information</button>
+
+<form id = 'scoresform' style="visibility: hidden">
     <label style="position:absolute; top: 50px; left: 750px;" for="googlefood">Google Food Score:</label>
-    <input style="position:absolute; top: 50px; left: 950px; width: 50px;" id="googlefood" type="text" />
+    <input style="position:absolute; top: 50px; left: 950px; width: 50px;" id="googlefood" type="text" readonly />
     <label style="position:absolute; top: 100px; left: 750px;" for="googlecommunity">Google Community Score:</label>
-    <input style="position:absolute; top: 100px; left: 950px; width: 50px;" id="googlecommunity" type="text" />
+    <input style="position:absolute; top: 100px; left: 950px; width: 50px;" id="googlecommunity" type="text" readonly/>
     <label style="position:absolute; top: 150px; left: 750px;" for="googlebigshops">Google Big Shops Score:</label>
-    <input style="position:absolute; top: 150px; left: 950px; width: 50px;" id="googlebigshops" type="text" />
+    <input style="position:absolute; top: 150px; left: 950px; width: 50px;" id="googlebigshops" type="text" readonly/>
     <label style="position:absolute; top: 200px; left: 750px;" for="googlesmallshops">Google Small Shops Score:</label>
-    <input style="position:absolute; top: 200px; left: 950px; width: 50px;" id="googlesmallshops" type="text" />
+    <input style="position:absolute; top: 200px; left: 950px; width: 50px;" id="googlesmallshops" type="text" readonly/>
 
     <label style="position:absolute; top: 250px; left: 750px;" for="googletransit">Google Transit Score:</label>
-    <input style="position:absolute; top: 250px; left: 950px; width: 50px;" id="googletransit" type="text" />
+    <input style="position:absolute; top: 250px; left: 950px; width: 50px;" id="googletransit" type="text" readonly/>
 
     <label style="position:absolute; top: 300px; left: 750px;" for="googletransit">Google Tourist Score:</label>
-    <input style="position:absolute; top: 300px; left: 950px; width: 50px;" id="googletourist" type="text" />
+    <input style="position:absolute; top: 300px; left: 950px; width: 50px;" id="googletourist" type="text" readonly/>
 
     <label style="position:absolute; top: 350px; left: 750px;" for="yelpfood">Yelp Food Score:</label>
-    <input style="position:absolute; top: 350px; left: 950px; width: 50px;" id="yelpfood" type="text" />
+    <input style="position:absolute; top: 350px; left: 950px; width: 50px;" id="yelpfood" type="text" readonly/>
 
     <label style="position:absolute; top: 400px; left: 750px;" for="yelpshopping">Yelp Shopping Score:</label>
-    <input style="position:absolute; top: 400px; left: 950px; width: 50px;" id="yelpshopping" type="text" />
+    <input style="position:absolute; top: 400px; left: 950px; width: 50px;" id="yelpshopping" type="text" readonly/>
 
     <label style="position:absolute; top: 450px; left: 750px;" for="yelpcommunity">Yelp Community Score:</label>
-    <input style="position:absolute; top: 450px; left: 950px; width: 50px;" id="yelpcommunity" type="text" />
+    <input style="position:absolute; top: 450px; left: 950px; width: 50px;" id="yelpcommunity" type="text" readonly/>
 
 
     <label style="position:absolute; top: 500px; left: 750px;" for="walkscore">Walking Score:</label>
-    <input style="position:absolute; top: 500px; left: 950px; width: 50px;" id="walkscore" type="text" />
+    <input style="position:absolute; top: 500px; left: 950px; width: 50px;" id="walkscore" type="text" readonly/>
 
-
-    <label style="position:absolute; top: 550px; left: 750px;" for="average">Average Score:</label>
-    <input style="position:absolute; top: 550px; left: 950px; width: 50px;" id="average" type="text" />
 
     <label style="position:absolute; top: 10px; left: 750px;" for="address">Address:</label>
-    <input style="position:absolute; top: 10px; left: 825px; width: 300px;" id="address" type="text" />
+    <input style="position:absolute; top: 10px; left: 825px; width: 300px;" id="address" type="text" readonly/>
+</form>
+
+<form>
+    <label style="position:absolute; top: 600px; left: 50px;" for="average">Average Score:</label>
+    <input style="position:absolute; top: 600px; left: 175px; width: 50px;" id="average" type="text" readonly/>
 </form>
  
   <script>
@@ -194,7 +194,7 @@ var baseLayer = L.tileLayer(
   );
 
 var map = new L.Map(document.getElementById('map'), {
-  center: new L.LatLng(42.3736, - 71.1097),///L.LatLng(centerlat, centerlng),
+  center: new L.LatLng(42.3736, - 71.1097),
   zoom: 13,
   layers: [baseLayer]
 
@@ -210,10 +210,16 @@ var baseMaps = {
 
 
 /// Add Markers to Map ///
+hasmarker = false
 
 function onMapClick(e) {
+  if (hasmarker){
+    map.removeLayer(marker);
+    hasmarker = !hasmarker;
+  }
   marker = new L.marker(e.latlng, {draggable:'true'});
   markercontainer.push(marker);
+
 
   for (var name in AllScores){
     document.getElementById(name).value = calculatescore(marker.getLatLng().lat,marker.getLatLng().lng, AllScores[name]); 
@@ -222,6 +228,8 @@ function onMapClick(e) {
   var currlocation = geocodeLatLng(geocoder, marker.getLatLng().lat, marker.getLatLng().lng);
 
   marker.addTo(map).bindPopup("Lat: " + marker.getLatLng().lat + ", Lng: " + marker.getLatLng().lng);
+  map.panTo(marker.getLatLng());
+
   marker.on('dragend', function(event){
     var marker = event.target;
     var position = marker.getLatLng();
@@ -241,6 +249,7 @@ function onMapClick(e) {
 
   });
   map.addLayer(marker);
+  hasmarker = !hasmarker;
 };
 
 
@@ -253,95 +262,26 @@ function onMapClick(e) {
 /// If you want to have different colors, put this: gradient: {'.5': 'blue', '.8': 'red', '.95': 'white'}
 
 var cfg1 = {"radius": .007, "maxOpacity": .8, "scaleRadius": true, "useLocalExtrema": true, latField: 'lat', lngField: 'lng', valueField: 'count',  "blur": .8 };
-var cfg2 = {"radius": .007, "maxOpacity": .8, "scaleRadius": true, "useLocalExtrema": true, latField: 'lat', lngField: 'lng', valueField: 'count',  "blur": .8};
-var cfg3 = {"radius": .007, "maxOpacity": .8, "scaleRadius": true, "useLocalExtrema": true, latField: 'lat', lngField: 'lng', valueField: 'count',  "blur": .8};
-var cfg4 = {"radius": .007, "maxOpacity": .8, "scaleRadius": true, "useLocalExtrema": true, latField: 'lat', lngField: 'lng', valueField: 'count',  "blur": .8 };
-var cfg5 = {"radius": .007, "maxOpacity": .8, "scaleRadius": true, "useLocalExtrema": true, latField: 'lat', lngField: 'lng', valueField: 'count',  "blur": .8};
-var cfg6 = {"radius": .007, "maxOpacity": .8, "scaleRadius": true, "useLocalExtrema": true, latField: 'lat', lngField: 'lng', valueField: 'count',  "blur": .8};
-var cfg7 = {"radius": .007, "maxOpacity": .8, "scaleRadius": true, "useLocalExtrema": true, latField: 'lat', lngField: 'lng', valueField: 'count',  "blur": .8 };
-var cfg8 = {"radius": .007, "maxOpacity": .8, "scaleRadius": true, "useLocalExtrema": true, latField: 'lat', lngField: 'lng', valueField: 'count',  "blur": .8};
-var cfg9 = {"radius": .007, "maxOpacity": .8, "scaleRadius": true, "useLocalExtrema": true, latField: 'lat', lngField: 'lng', valueField: 'count',  "blur": .8};
-var cfg10 = {"radius": .007, "maxOpacity": .8, "scaleRadius": true, "useLocalExtrema": true, latField: 'lat', lngField: 'lng', valueField: 'count',  "blur": .8 };
-var cfg11 = {"radius": .007, "maxOpacity": .8, "scaleRadius": true, "useLocalExtrema": true, latField: 'lat', lngField: 'lng', valueField: 'count',  "blur": .8};
-var cfg12 = {"radius": .007, "maxOpacity": .8, "scaleRadius": true, "useLocalExtrema": true, latField: 'lat', lngField: 'lng', valueField: 'count',  "blur": .8};
 
-
-var googlefoodlayer = new HeatmapOverlay(cfg1);
-var googlebigshopslayer = new HeatmapOverlay(cfg2);
-var googlesmallshopslayer = new HeatmapOverlay(cfg3);
-var googletransitlayer = new HeatmapOverlay(cfg4);
-var googletouristlayer = new HeatmapOverlay(cfg5);
-var googlecommunitylayer = new HeatmapOverlay(cfg6);
-
-var yelpfoodlayer = new HeatmapOverlay(cfg7);
-var yelpshoppinglayer = new HeatmapOverlay(cfg8);
-var yelpcommunitylayer = new HeatmapOverlay(cfg9);
-
-var walkscorelayer = new HeatmapOverlay(cfg10);
-var averagelayer = new HeatmapOverlay(cfg12);
-var compositelayer = new HeatmapOverlay(cfg11);
+var compositelayer = new HeatmapOverlay(cfg1);
 
 
 /// Set Data ///
 
 
-
-googlefoodlayer.setData(googlefoodData);
-googlebigshopslayer.setData(googlebigshopsData);
-googlesmallshopslayer.setData(googlesmallshopsData);
-googletransitlayer.setData(googletransitData);
-googletouristlayer.setData(googletouristData);
-googlecommunitylayer.setData(googlecommunityData);
-
-yelpfoodlayer.setData(yelpfoodData);
-yelpshoppinglayer.setData(yelpshoppingData);
-yelpcommunitylayer.setData(yelpcommunityData);
-
-walkscorelayer.setData(walkscoreData);
-averagelayer.setData(averageData);
 compositelayer.setData({max: 0, data:[]});
 
 
 // /// Create Map Layers ///
 
-var googlefoodgroup = L.layerGroup([googlefoodlayer]);
-var googlebigshopsgroup = L.layerGroup([googlebigshopslayer]);
-var googlesmallshopsgroup = L.layerGroup([googlesmallshopslayer]);
-var googletransitgroup = L.layerGroup([googletransitlayer]);
-var googletouristgroup = L.layerGroup([googletouristlayer]);
-var googlecommunitygroup = L.layerGroup([googlecommunitylayer]);
-
-var yelpfoodgroup = L.layerGroup([yelpfoodlayer]);
-var yelpshoppinggroup = L.layerGroup([yelpshoppinglayer]);
-var yelpcommunitygroup = L.layerGroup([yelpcommunitylayer]);
-
-var walkscoregroup = L.layerGroup([walkscorelayer]);
-var averagegroup = L.layerGroup([averagelayer]);
 var compositegroup = L.layerGroup([compositelayer]);
 
 
-
-/// Initialize Layers on the Map ///
-
-var overlayMaps = {
-  "Google Food Data": googlefoodgroup,
-  "Google Big Shops Data": googlebigshopsgroup,
-  "Google Small Shops Data": googlesmallshopsgroup,
-  "Google Transit Data": googletransitgroup,
-  "Google Tourist Data": googletouristgroup,
-  "Google Community Data": googlecommunitygroup,
-  "Yelp Food Data": yelpfoodgroup,
-  "Yelp Shopping Data": yelpshoppinggroup,
-  "Yelp Community Data": yelpcommunitygroup,
-  "Walk Score Data": walkscoregroup,
-  "Average Data": averagegroup,
-  "Multiple Layers": compositegroup
-}
-
 /// Add Layers to Map ///
 
-L.control.layers(baseMaps, overlayMaps).addTo(map);
+map.addLayer(compositegroup);
 
+// L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 //// Scoring Section ////
 
@@ -385,23 +325,15 @@ function calculatescore(lat, lng, heatmapdata){
     myScript.setAttribute('src', 'DataFiles/SoofaData' + this.value.split(" ")[0] + '.js');
     document.head.appendChild(myScript);
     myScript.onload = function() {
-    googlefoodlayer.setData(googlefoodData);
-    googlebigshopslayer.setData(googlebigshopsData);
-    googlesmallshopslayer.setData(googlesmallshopsData);
-    googletransitlayer.setData(googletransitData);
-    googletouristlayer.setData(googletouristData);
-    googlecommunitylayer.setData(googlecommunityData);
-
-    yelpfoodlayer.setData(yelpfoodData);
-    yelpshoppinglayer.setData(yelpshoppingData);
-    yelpcommunitylayer.setData(yelpcommunityData);
-    walkscorelayer.setData(walkscoreData);
-    averagelayer.setData(averageData);
     compositelayer.setData({max:0, data: []});
     document.getElementById("layerselector").reset();
     map.panTo(new L.LatLng(lat, lng)); 
     markercontainer = [];
     layersactive = [];
+    map.removeLayer(rect);
+    rect = L.rectangle([northeastcoord, southwestcoord], { dashArray: "30 10", color: "#000000",  opacity: .5});
+    map.addLayer(rect);
+
     };
 }
 
@@ -472,11 +404,11 @@ function clone(obj) {
 </script>
 
 <!-- Dropdown menu for multiple heatmap layers  -->
-<form id = "layerselector" style="position:absolute; top: 30px; left: 425px;">
+<form id = "layerselector" style="position:absolute; top: 30px; left: 500px;">
   <div class="multiselect">
     <div class="selectBox" onclick="showCheckboxes()">
       <select>
-        <option>Add to Multiple Layers</option>
+        <option>Add Layers</option>
       </select>
       <div class="overSelect"></div>
     </div>
@@ -506,8 +438,14 @@ function clone(obj) {
       <label style="background-color:white;">
       <input onclick = "layertrigger('yelpshopping');" type="checkbox" />Yelp Shopping Data</label>
 
+     <label style="background-color:white;">
+      <input onclick = "layertrigger('yelpcommunity');" type="checkbox" />Yelp Community Data</label>
+
       <label style="background-color:white;">
       <input onclick = "layertrigger('walkscore');" type="checkbox" />Walk Score Data</label>
+
+      <label style="background-color:white;">
+      <input onclick = "for (key in AllScores){ if (key != 'average'){layertrigger(key)}};" type="checkbox" />Show All Layers</label>
 
     </div>
   </div>
@@ -527,7 +465,80 @@ function showCheckboxes() {
   }
 }
 
+
 </script>
+
+<!-- Searchbox -->
+  <input style="position:relative; top:10px; left:50px; width: 400px; height:20px" type="text" id = "mapsearch" placeholder="Enter a Location!"> 
+
+
+<script> 
+/// Code for Searchbox ///
+
+var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
+  google.maps.event.addListener(searchBox, 'places_changed', function(){
+
+  if (hasmarker){
+    map.removeLayer(marker);
+    hasmarker = !hasmarker;
+  }
+  marker = new L.marker([searchBox.getPlaces()[0].geometry.location.lat(), searchBox.getPlaces()[0].geometry.location.lng()], {draggable:'true'});
+  markercontainer.push(marker);
+
+  for (var name in AllScores){
+    document.getElementById(name).value = calculatescore(marker.getLatLng().lat,marker.getLatLng().lng, AllScores[name]); 
+  }
+
+  var currlocation = geocodeLatLng(geocoder, marker.getLatLng().lat, marker.getLatLng().lng);
+
+  marker.addTo(map).bindPopup("Lat: " + marker.getLatLng().lat + ", Lng: " + marker.getLatLng().lng);
+  map.panTo(marker.getLatLng());
+
+  marker.on('dragend', function(event){
+    var marker = event.target;
+    var position = marker.getLatLng();
+    marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
+    var currlocation = geocodeLatLng(geocoder, marker.getLatLng().lat, marker.getLatLng().lng);
+    marker.addTo(map).bindPopup("Lat: " + marker.getLatLng().lat + ", Lng: " + marker.getLatLng().lng);
+
+
+  for (var name in AllScores){
+    document.getElementById(name).value = calculatescore(marker.getLatLng().lat,marker.getLatLng().lng, AllScores[name]);
+  }    
+
+     document.getElementById('address').value = searchBox.getPlaces()[0].address;
+
+
+    map.panTo(new L.LatLng(position.lat, position.lng))
+
+  });
+  map.addLayer(marker);
+  hasmarker = !hasmarker;
+  searchBox.clear();
+
+  });
+
+/// Code for Showing/Hiding Scores ///
+
+  var theButton = document.getElementById('scorebutton');
+  var shown = false;
+  theButton.onclick = function() { 
+    if (shown){
+        document.getElementById('scoresform').style.visibility='hidden';  
+        shown = !shown; 
+    }
+    else{
+        document.getElementById('scoresform').style.visibility='visible';  
+        shown = !shown;
+    }
+  }
+
+  // Code for Dashed Recntangle //
+
+  var rect = L.rectangle([northeastcoord, southwestcoord], { dashArray: "30 10", color: "#000000",  opacity: .5})
+  map.addLayer(rect);
+</script>
+
 
     </body>
     </html> 

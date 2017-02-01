@@ -25,3 +25,8 @@ for (var key in AllScores){
 	}
 	AllScores[key].max = 10;
 }
+
+
+
+var northeastcoord = [40.248298, -74.728904];
+var southwestcoord = [40.183809,  -74.819507];

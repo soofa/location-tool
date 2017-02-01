@@ -16,3 +16,8 @@
 var lat = 42.0883603
 var lng = -87.98062650000001
 var AllScores = {"googlefood": googlefoodData, "googlecommunity": googlecommunityData, "googlebigshops": googlebigshopsData, "googlesmallshops": googlesmallshopsData, "googletourist": googletouristData, "googletransit": googletransitData, "yelpfood": yelpfoodData, "yelpshopping": yelpshoppingData, "yelpcommunity": yelpcommunityData, "walkscore": walkscoreData, "average": averageData};
+
+
+
+var northeastcoord = [42.153935, -87.9405007];
+var southwestcoord = [42.0182477,  -88.02654299999999];

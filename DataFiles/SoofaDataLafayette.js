@@ -14,6 +14,10 @@
 
 var lat= 30.2241;
 var lng= -92.0198;
+
+var northeastcoord = [30.296503, -91.969376];
+var southwestcoord = [30.127487,  -92.10776200000001];
+
 var AllScores = {"googlefood": googlefoodData, "googlecommunity": googlecommunityData, "googlebigshops": googlebigshopsData, "googlesmallshops": googlesmallshopsData, "googletourist": googletouristData, "googletransit": googletransitData, "yelpfood": yelpfoodData, "yelpshopping": yelpshoppingData, "yelpcommunity": yelpcommunityData, "walkscore": walkscoreData, 'average': averageData};
 
 for (var key in AllScores){
@@ -23,3 +27,5 @@ for (var key in AllScores){
 	}
 	AllScores[key].max = 10;
 }
+
+
