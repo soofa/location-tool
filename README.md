@@ -13,7 +13,7 @@ google_API_KEY = Your Google Maps Webservice API Key
 
 walkscore_api = Your Walk Score API key
 
-You should also have the google maps javascript api enabled for your google key above. You can then insert your key into line 88 of HeatMap.html. This key is used to display the address of the markers in the map. 
+You should also have the google maps javascript api enabled for your google key above. You can then insert your key into line 83 of HeatMap.html. This key is used to display the address of the markers in the map. 
 
 ````HTML
  <script src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEY&libraries=places"
