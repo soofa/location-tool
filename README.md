@@ -37,14 +37,19 @@ cities every day.
 
 ## How to Visualize Heatmaps:
 
-After CreateHeatMaps.py finishes, a file called 'SoofaDataYOURCITY.js' will be created in the current folder. Now open
-HeatMap.html and go to line 56. There, you will need to add the following code to see the heatmaps for your city:
+After CreateHeatMaps.py finishes, a file called 'SoofaDataYOURCITY.js' will be created in the DataFiles folder. Now open
+HeatMap.html and go to line 56 (or search for id = "selectcity"). There, you will need to add the following code to see the heatmaps for your city:
 
 ```` HTML
  <option value="Cityname">Cityname, State</option>
  ````
 
- Then, open HeatMap.html with Google Chrome. You will see a menu called 'Cities.' Click on this menu and then click on your city. This will update the map view and you will be able to see the heatmaps for your city. 
+ Then, open HeatMap.html with Google Chrome. You will see a menu called 'Cities.' Click on this menu and then click on your city. This will update the map view and you will be able to see the heatmaps for your city. Note: The current heatmap view is relative so once you zoom in/out of the map, the heatmap is regenerated. This means that a if you change how the map looks (zoom/move the map), the heatmap will also change. To change this, go to HeatMap.html and locate
+
+ ````javascript
+ var cfg1 = ...
+ ````
+ Then change cfg1.useLocalExtrema to false.
 
 ## How to use HeatMap.html:
 
@@ -54,7 +59,24 @@ You can also click on the map itself. This will create a draggable marker that y
 
 ## How Scores are Calculated:
 
-Each score ranges from 0 to 10. The google scores count the number of locations of that type that are in a 500 meter radius of the marker. The yelp scores use the formula ratings^2 * # of ratings to give a score for each location. The walkscores are pulled from the walkscore API. 
+Each score ranges from 0 (low) to 10 (high). Each of the scores are relative and a score of 10 is given to the best location in the selected city. Each city is sampled with a grid of locations. The points of the grid are 500 meters apart from each other in both the x and y direction.
+
+#### Google Scores:
+Each of the Google scores measures the the number of particular types of buisnesses/locations that are in a 500 meter radious of a sampled grid point. 
+For example, the Google food score measures the number of restaurants in your selected city. If you want to see the full list of location types that go into calculating The Google scores, go to CreateHeatMap.py and look at the following function:
+````python
+def getGoogleData(...) ...
+````
+
+The scores and then normalized to be between 0 and 10. Note that the Google API only returns at most 60 results for each search.
+
+
+#### Yelp Scores:
+
+The Yelp scores are calculated as follows. For each grid point, we sample 20 buisnesses/locations around the grid point that falls into a particular category (for example restaurants). Then for each of the 20 locations, we add up ratings^2 * # of ratings and the final sum is the score associated with the grid point. Finally, the scores are normalized to be between 0 and 10.
+
+#### Walk Scores:
+The walkscores are pulled from the walkscore API. For more information/methodology, see [here](https://www.walkscore.com/methodology.shtml).
 
 ## Other Information:
 
