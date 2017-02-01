@@ -228,7 +228,6 @@ function onMapClick(e) {
   var currlocation = geocodeLatLng(geocoder, marker.getLatLng().lat, marker.getLatLng().lng);
 
   marker.addTo(map)
-  // .bindPopup("Lat: " + marker.getLatLng().lat + ", Lng: " + marker.getLatLng().lng);  // should we have this popup
   map.panTo(marker.getLatLng());
 
   marker.on('dragend', function(event){
@@ -237,7 +236,6 @@ function onMapClick(e) {
     marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
     var currlocation = geocodeLatLng(geocoder, marker.getLatLng().lat, marker.getLatLng().lng);
     marker.addTo(map)
-    // .bindPopup("Lat: " + marker.getLatLng().lat + ", Lng: " + marker.getLatLng().lng);
 
 
   for (var name in AllScores){
@@ -489,11 +487,9 @@ function showCheckboxes() {
 var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
   google.maps.event.addListener(searchBox, 'places_changed', function(){
 
-  if (hasmarker){
-    map.removeLayer(marker);
-    hasmarker = !hasmarker;
-  }
+
   marker = new L.marker([searchBox.getPlaces()[0].geometry.location.lat(), searchBox.getPlaces()[0].geometry.location.lng()], {draggable:'true'});
+  marker.on('click', markerOnClick);
   markercontainer.push(marker);
 
   for (var name in AllScores){
@@ -502,7 +498,7 @@ var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsea
 
   var currlocation = geocodeLatLng(geocoder, marker.getLatLng().lat, marker.getLatLng().lng);
 
-  marker.addTo(map).bindPopup("Lat: " + marker.getLatLng().lat + ", Lng: " + marker.getLatLng().lng);
+  marker.addTo(map)
   map.panTo(marker.getLatLng());
 
   marker.on('dragend', function(event){
@@ -510,7 +506,7 @@ var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsea
     var position = marker.getLatLng();
     marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
     var currlocation = geocodeLatLng(geocoder, marker.getLatLng().lat, marker.getLatLng().lng);
-    marker.addTo(map).bindPopup("Lat: " + marker.getLatLng().lat + ", Lng: " + marker.getLatLng().lng);
+    marker.addTo(map)
 
 
   for (var name in AllScores){
@@ -524,8 +520,6 @@ var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsea
 
   });
   map.addLayer(marker);
-  hasmarker = !hasmarker;
-  searchBox.clear();
 
   });
 
