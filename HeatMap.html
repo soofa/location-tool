@@ -4,7 +4,7 @@
 
    <title>Heat Map Data</title>
 
-  <h2>City Heatmaps</h2>
+  <h2>Click on the map!</h2>
   <style>
  
     body { font-family:sans-serif; }
@@ -173,7 +173,7 @@ function geocodeLatLng(geocoder, lat, lng) {
   geocoder.geocode({'location': latlng}, function(results, status) {
     if (status === 'OK') {
       if (results[1]) {
-            document.getElementById('address').value = results[1].formatted_address;
+            document.getElementById('address').value = results[0].formatted_address;
       } else {
             document.getElementById('address').value = 'No results found';
       }
@@ -415,7 +415,7 @@ function clone(obj) {
   <div class="multiselect">
     <div class="selectBox" onclick="showCheckboxes()">
       <select>
-        <option>Add Layers</option>
+        <option>Show Layers</option>
       </select>
       <div class="overSelect"></div>
     </div>
