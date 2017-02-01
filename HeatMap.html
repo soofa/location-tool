@@ -212,10 +212,6 @@ var baseMaps = {
 /// Add Markers to Map ///
 
 function onMapClick(e) {
-  // if (hasmarker){
-  //   map.removeLayer(marker);
-  //   hasmarker = !hasmarker;
-  // }
   marker = new L.marker(e.latlng, {draggable:'true'});
   marker.on('click', markerOnClick);
   markercontainer.push(marker);
@@ -290,7 +286,6 @@ var compositegroup = L.layerGroup([compositelayer]);
 
 map.addLayer(compositegroup);
 
-// L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 //// Scoring Section ////
 
@@ -343,7 +338,7 @@ function calculatescore(lat, lng, heatmapdata){
     markercontainer = [];
     layersactive = [];
     map.removeLayer(rect);
-    rect = L.rectangle([northeastcoord, southwestcoord], { dashArray: "30 10", color: "#4d4d4d",  opacity: .5});
+    rect = L.rectangle([northeastcoord, southwestcoord], { dashArray: "10", color: "#4d4d4d",  opacity: .8,  fillOpacity: 0});
     map.addLayer(rect);
 
     };
@@ -543,7 +538,7 @@ var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsea
 
   // Code for Dashed Recntangle //
 
-  var rect = L.rectangle([northeastcoord, southwestcoord], { dashArray: "30 10", color: "#4d4d4d",  opacity: .5})
+  var rect = L.rectangle([northeastcoord, southwestcoord], { dashArray: "10", color: "#4d4d4d",  opacity: .8,  fillOpacity: 0})
   map.addLayer(rect);
 </script>
 
