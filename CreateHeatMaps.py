@@ -27,19 +27,15 @@ while True:
 import yelp
 from yelp.client import Client
 from yelp.oauth1_authenticator import Oauth1Authenticator
-<<<<<<< Updated upstream
 yelp_ConsumerKey = ' '
 yelp_ConsumerSecret = ' '
 yelp_Token = ' '
 yelp_TokenSecret = ' '
-=======
 yelp_ConsumerKey = os.environ.get('yelp_ConsumerKey') 
 yelp_ConsumerSecret = os.environ.get('yelp_ConsumerSecret') 
 yelp_Token = os.environ.get('yelp_Token') 
 yelp_TokenSecret = os.environ.get('yelp_TokenSecret') 
-print(yelp_Token)
-print(type(yelp_Token))
->>>>>>> Stashed changes
+
 
 auth = Oauth1Authenticator(consumer_key = yelp_ConsumerKey, consumer_secret = yelp_ConsumerSecret, token = yelp_Token, token_secret= yelp_TokenSecret)
 client = Client(auth)
@@ -49,22 +45,22 @@ client = Client(auth)
 ######################################################################## Google API Set Up ################################################################
 
 import googlemaps
-<<<<<<< Updated upstream
+
 google_API_KEY = ' '
-=======
+
 google_API_KEY = os.environ.get('google_API_KEY') 
->>>>>>> Stashed changes
+
 gmaps = googlemaps.Client(key = google_API_KEY)	
 
 
 ######################################################################## Walscore API Set Up ################################################################
 
 import walkscore
-<<<<<<< Updated upstream
+
 walkscore_api = ' '
-=======
+
 walkscore_api = os.environ.get('walkscore_api') 
->>>>>>> Stashed changes
+
 walkscore = walkscore.WalkScore(walkscore_api)
 
 
