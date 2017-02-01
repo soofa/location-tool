@@ -279,7 +279,7 @@ AllResults = []
 
 for score in AllScores:
 	AllResults.extend(score.values())
-g
+
 AvgResult = reduce((lambda x, y: np.add(x,y)), AllResults)
 AvgScore = {'averageData': AvgResult/len(AllResults)}
 AvgTags = {'averageData' : []}
@@ -287,18 +287,32 @@ averageData = javascriptwriter(AvgScore, xvals, yvals, num_xsamples, num_ysample
 
 
 print('Writing Data into File')
-f = open('SoofaData' + city.split(",")[0] + '.js', "w")
-f.write(outputyelp + '\n')
-f.write(outputwalkscore + '\n')
-f.write(averageData + '\n')
-f.write(outputgoogle + '\n')
-f.write('var lat = ' + str(center_coord['lat']) + '\n')
-f.write('var lng = ' + str(center_coord['lng']) + '\n')
-f.write('var AllScores = {"googlefood": googlefoodData, "googlecommunity": googlecommunityData, "googlebigshops": googlebigshopsData, "googlesmallshops": googlesmallshopsData, "googletourist": googletouristData, "googletransit": googletransitData, "yelpfood": yelpfoodData, "yelpshopping": yelpshoppingData, "yelpcommunity": yelpcommunityData, "walkscore": walkscoreData, "average": averageData};' + '\n')
-f.write('var northeastcoord = [' + str(northeast_coord['lat']) + str(northeast_coord['lng']) + ']; \n')
-f.write('var southwestcoord = [' + str(southwest_coord['lat']) + str(southwest_coord['lng']) + ']; \n')
-f.close()
-print('Writing Finished!')
-print('Minutes taken: %f' %((time.time() - start)/60.0))
-
+try:
+	f = open('DataFiles/SoofaTestData' + city.split(",")[0] + '.js', "w")
+	f.write(outputyelp + '\n')
+	f.write(outputwalkscore + '\n')
+	f.write(averageData + '\n')
+	f.write(outputgoogle + '\n')
+	f.write('var lat = ' + str(center_coord['lat']) + '\n')
+	f.write('var lng = ' + str(center_coord['lng']) + '\n')
+	f.write('var AllScores = {"googlefood": googlefoodData, "googlecommunity": googlecommunityData, "googlebigshops": googlebigshopsData, "googlesmallshops": googlesmallshopsData, "googletourist": googletouristData, "googletransit": googletransitData, "yelpfood": yelpfoodData, "yelpshopping": yelpshoppingData, "yelpcommunity": yelpcommunityData, "walkscore": walkscoreData, "average": averageData};' + '\n')
+	f.write('var northeastcoord = [' + str(northeast_coord['lat']) + ',' + str(northeast_coord['lng']) + ']; \n')
+	f.write('var southwestcoord = [' + str(southwest_coord['lat']) +  ',' + str(southwest_coord['lng']) + ']; \n')
+	f.close()
+	print('Writing Finished!')
+	print('Minutes taken: %f' %((time.time() - start)/60.0))
+except:
+	f = open('SoofaTestData' + city.split(",")[0] + '.js', "w")
+	f.write(outputyelp + '\n')
+	f.write(outputwalkscore + '\n')
+	f.write(averageData + '\n')
+	f.write(outputgoogle + '\n')
+	f.write('var lat = ' + str(center_coord['lat']) + '\n')
+	f.write('var lng = ' + str(center_coord['lng']) + '\n')
+	f.write('var AllScores = {"googlefood": googlefoodData, "googlecommunity": googlecommunityData, "googlebigshops": googlebigshopsData, "googlesmallshops": googlesmallshopsData, "googletourist": googletouristData, "googletransit": googletransitData, "yelpfood": yelpfoodData, "yelpshopping": yelpshoppingData, "yelpcommunity": yelpcommunityData, "walkscore": walkscoreData, "average": averageData};' + '\n')
+	f.write('var northeastcoord = [' + str(northeast_coord['lat']) + ',' + str(northeast_coord['lng']) + ']; \n')
+	f.write('var southwestcoord = [' + str(southwest_coord['lat']) +  ',' + str(southwest_coord['lng']) + ']; \n')
+	f.close()
+	print('Writing Finished!')
+	print('Minutes taken: %f' %((time.time() - start)/60.0))
 
