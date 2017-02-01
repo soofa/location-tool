@@ -279,7 +279,7 @@ AllResults = []
 
 for score in AllScores:
 	AllResults.extend(score.values())
-g
+
 AvgResult = reduce((lambda x, y: np.add(x,y)), AllResults)
 AvgScore = {'averageData': AvgResult/len(AllResults)}
 AvgTags = {'averageData' : []}
