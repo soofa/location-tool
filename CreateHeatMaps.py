@@ -315,4 +315,9 @@ except:
 	f.close()
 	print('Writing Finished!')
 	print('Minutes taken: %f' %((time.time() - start)/60.0))
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/master
 
