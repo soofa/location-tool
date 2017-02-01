@@ -210,14 +210,14 @@ var baseMaps = {
 
 
 /// Add Markers to Map ///
-hasmarker = false
 
 function onMapClick(e) {
-  if (hasmarker){
-    map.removeLayer(marker);
-    hasmarker = !hasmarker;
-  }
+  // if (hasmarker){
+  //   map.removeLayer(marker);
+  //   hasmarker = !hasmarker;
+  // }
   marker = new L.marker(e.latlng, {draggable:'true'});
+  marker.on('click', markerOnClick);
   markercontainer.push(marker);
 
 
@@ -227,7 +227,7 @@ function onMapClick(e) {
 
   var currlocation = geocodeLatLng(geocoder, marker.getLatLng().lat, marker.getLatLng().lng);
 
-  marker.addTo(map).bindPopup("Lat: " + marker.getLatLng().lat + ", Lng: " + marker.getLatLng().lng);
+  marker.addTo(map)
   map.panTo(marker.getLatLng());
 
   marker.on('dragend', function(event){
@@ -235,7 +235,7 @@ function onMapClick(e) {
     var position = marker.getLatLng();
     marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
     var currlocation = geocodeLatLng(geocoder, marker.getLatLng().lat, marker.getLatLng().lng);
-    marker.addTo(map).bindPopup("Lat: " + marker.getLatLng().lat + ", Lng: " + marker.getLatLng().lng);
+    marker.addTo(map)
 
 
   for (var name in AllScores){
@@ -248,10 +248,19 @@ function onMapClick(e) {
     map.panTo(new L.LatLng(position.lat, position.lng))
 
   });
+
   map.addLayer(marker);
-  hasmarker = !hasmarker;
+
 };
 
+/// Marker On Click Events ///
+function markerOnClick(e)
+{
+   for (var name in AllScores){
+    document.getElementById(name).value = calculatescore(e.latlng.lat,e.latlng.lng, AllScores[name]); 
+  }
+  map.panTo(new L.LatLng(e.latlng.lat, e.latlng.lng));
+}
 
 
 
@@ -328,10 +337,13 @@ function calculatescore(lat, lng, heatmapdata){
     compositelayer.setData({max:0, data: []});
     document.getElementById("layerselector").reset();
     map.panTo(new L.LatLng(lat, lng)); 
+    for (var i = 0; i < markercontainer.length; i++){
+      map.removeLayer(markercontainer[i]);
+    };
     markercontainer = [];
     layersactive = [];
     map.removeLayer(rect);
-    rect = L.rectangle([northeastcoord, southwestcoord], { dashArray: "30 10", color: "#000000",  opacity: .5});
+    rect = L.rectangle([northeastcoord, southwestcoord], { dashArray: "30 10", color: "#4d4d4d",  opacity: .5});
     map.addLayer(rect);
 
     };
@@ -478,11 +490,9 @@ function showCheckboxes() {
 var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
   google.maps.event.addListener(searchBox, 'places_changed', function(){
 
-  if (hasmarker){
-    map.removeLayer(marker);
-    hasmarker = !hasmarker;
-  }
+
   marker = new L.marker([searchBox.getPlaces()[0].geometry.location.lat(), searchBox.getPlaces()[0].geometry.location.lng()], {draggable:'true'});
+  marker.on('click', markerOnClick);
   markercontainer.push(marker);
 
   for (var name in AllScores){
@@ -491,7 +501,7 @@ var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsea
 
   var currlocation = geocodeLatLng(geocoder, marker.getLatLng().lat, marker.getLatLng().lng);
 
-  marker.addTo(map).bindPopup("Lat: " + marker.getLatLng().lat + ", Lng: " + marker.getLatLng().lng);
+  marker.addTo(map)
   map.panTo(marker.getLatLng());
 
   marker.on('dragend', function(event){
@@ -499,7 +509,7 @@ var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsea
     var position = marker.getLatLng();
     marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
     var currlocation = geocodeLatLng(geocoder, marker.getLatLng().lat, marker.getLatLng().lng);
-    marker.addTo(map).bindPopup("Lat: " + marker.getLatLng().lat + ", Lng: " + marker.getLatLng().lng);
+    marker.addTo(map)
 
 
   for (var name in AllScores){
@@ -513,8 +523,6 @@ var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsea
 
   });
   map.addLayer(marker);
-  hasmarker = !hasmarker;
-  searchBox.clear();
 
   });
 
@@ -535,7 +543,7 @@ var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsea
 
   // Code for Dashed Recntangle //
 
-  var rect = L.rectangle([northeastcoord, southwestcoord], { dashArray: "30 10", color: "#000000",  opacity: .5})
+  var rect = L.rectangle([northeastcoord, southwestcoord], { dashArray: "30 10", color: "#4d4d4d",  opacity: .5})
   map.addLayer(rect);
 </script>
 
