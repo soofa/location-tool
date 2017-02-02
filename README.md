@@ -1,9 +1,9 @@
 ## Api Keys:
 You will need a .env file in your local environment with api keys defined as the following:
 
-yelp_ConsumerKey: Your Yelp ConsumerKey
+yelp_ConsumerKey = Your Yelp ConsumerKey
 
-yelp_ConsumerSecret =Your Yelp ConsumerSecret 
+yelp_ConsumerSecret = Your Yelp ConsumerSecret 
 
 yelp_Token = Your Yelp Token
 
@@ -88,6 +88,8 @@ The Yelp scores are calculated as follows. For each grid point, we sample 20 bui
 
 #### Walk Scores:
 The walkscores are pulled from the walkscore API. For more information/methodology, see [here](https://www.walkscore.com/methodology.shtml).
+
+The average score is just the average of all the other scores. It is also normalized to be between 0 and 10. The other scores provide much better information than the average score.
 
 ## Other Information:
 
