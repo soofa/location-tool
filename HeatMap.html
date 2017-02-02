@@ -219,7 +219,7 @@ function onMapClick(e) {
 
 
   for (var name in AllScores){
-    document.getElementById(name).value = calculatescore(marker.getLatLng().lat,marker.getLatLng().lng, AllScores[name]); 
+    document.getElementById(name).value = calculatescore(marker.getLatLng().lat,marker.getLatLng().lng, AllScores[name]);
   }
 
   var currlocation = geocodeLatLng(geocoder, marker.getLatLng().lat, marker.getLatLng().lng);
@@ -316,7 +316,7 @@ function closestscore (lat, lng, arr) {
 
 function calculatescore(lat, lng, heatmapdata){
   score = closestscore(lat, lng, heatmapdata.data);
-  return Math.round(1000*score/heatmapdata.max)/100;
+  return Math.round(1000*score/heatmapdata.max)/100; // Returns two decimal places
 }
 
 
