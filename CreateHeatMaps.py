@@ -298,9 +298,12 @@ try:
 	averageData = javascriptwriter(AvgScore, xvals, yvals, num_xsamples, num_ysamples, AvgTags)
 
 except:
-	
+
 	print('Sorry, average data could not be calculated')
 	averageData = ""
+
+
+############ Save the heatmap data ############
 
 print('Writing Data into File')
 try:  # If DataFiles is a valid subfolder
