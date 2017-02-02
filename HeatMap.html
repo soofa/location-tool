@@ -49,6 +49,17 @@
   display: block;
 }
 
+/*Css for 'show scores' button*/
+.button {
+    background-color: #f44336;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
   </style>
 
 <body>
@@ -123,7 +134,7 @@
 
 <div style="position:absolute; top: 105px; height: 500px; width: 700px;" class="heatmap" id="map" ></div>
 
-<button style="position:absolute; top: 30px; left: 450px;"  id="scorebutton">Show Additional Scores</button>
+<button class = "button" style="position:absolute; top: 30px; left: 450px;"  id="scorebutton">More Scores</button>
 
 <form id = 'scoresform' style="visibility: hidden">
     <label style="position:absolute; top: 75px; left: 750px;" for="googlefood">Google Food Score:</label>
