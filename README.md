@@ -24,15 +24,18 @@ You should also have the google maps javascript api enabled for your google key 
 
 Navigate to the directory that you are working in and enter the following into the command line:
 
+```` bash
 python3 CreateHeatMaps.py
+````
 
 Then, the following prompt will open: 
 
+```` bash
 Enter location in city, state format (NewHaven, CT): 
+````
 
 Enter the city that you wish to create heatmaps for. Note that depending on the size of the city, this may take 
-anywhere from 15 minutes to multiple hours. Also, due to restrictions on the above apis, it is only possible to create heatmaps for 2-3 
-cities every day.
+anywhere from 15 minutes to multiple hours. Also, due to restrictions on the above apis, it is only possible to create heatmaps for 2-3  cities every day.
 
 
 ## How to Visualize Heatmaps:
@@ -53,9 +56,9 @@ HeatMap.html and go to line 56 (or search for id = "selectcity"). There, you wil
 
 ## How to use HeatMap.html:
 
-You can select from a list of preloaded cities using the 'Cities' dropdown menu. The default city is Cambridge, MA. You can select which layers you want to see on the upper right corner of the map view. You should only be clicking on one layer! If you want to visualize multiple layers together, go to the upper right corner of the map view and click 'Multiple Layers.' You can then go to the 'Add to Multiple Layers' drop down menu and select the layers that you wish to visualize. 
+You can select from a list of preloaded cities using the 'Cities' dropdown menu. The default city is Cambridge, MA. You can select which layers you want to see from the 'Show Layers' menu. If you want to see all the layers together, you can click on 'Show All Layers'.
 
-You can also click on the map itself. This will create a draggable marker that you can move around. Dragging this marker will display the various scores for the marker location on the right side of the webpage.
+You can also click on the map itself. This will create a draggable marker that you can move around. Dragging this marker will display the various scores for the marker location on the right side of the webpage. You can also have many markers at the same time. However, if you change cities, all the existing markers will be erased.
 
 ## How Scores are Calculated:
 
