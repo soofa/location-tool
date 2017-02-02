@@ -55,7 +55,7 @@
 
 <!-- Dropdown menu for cities. This is where you add a new city!  -->
 
-<form style="position:absolute; top: 30px; left: 325px;" >
+<form style="position:absolute; top: 30px; left: 750px;" >
     <select  id="selectcity">
         <option value="default">Cities</option>
         <option value="Cambridge">Cambridge, MA</option>
@@ -120,47 +120,47 @@
 
 <!-- Set up score displays -->
 
-<div style="position:absolute; height: 500px; width: 700px;" class="heatmap" id="map" ></div>
+<div style="position:absolute; top: 125px; height: 500px; width: 700px;" class="heatmap" id="map" ></div>
 
-<button style="position:absolute; top: 640px; left: 50px;"  id="scorebutton">Show Additional Information</button>
+<button style="position:absolute; top: 50px; left: 450px;"  id="scorebutton">Show Additional Scores</button>
 
 <form id = 'scoresform' style="visibility: hidden">
-    <label style="position:absolute; top: 50px; left: 750px;" for="googlefood">Google Food Score:</label>
-    <input style="position:absolute; top: 50px; left: 950px; width: 50px;" id="googlefood" type="text" readonly />
-    <label style="position:absolute; top: 100px; left: 750px;" for="googlecommunity">Google Community Score:</label>
-    <input style="position:absolute; top: 100px; left: 950px; width: 50px;" id="googlecommunity" type="text" readonly/>
-    <label style="position:absolute; top: 150px; left: 750px;" for="googlebigshops">Google Big Shops Score:</label>
-    <input style="position:absolute; top: 150px; left: 950px; width: 50px;" id="googlebigshops" type="text" readonly/>
-    <label style="position:absolute; top: 200px; left: 750px;" for="googlesmallshops">Google Small Shops Score:</label>
-    <input style="position:absolute; top: 200px; left: 950px; width: 50px;" id="googlesmallshops" type="text" readonly/>
+    <label style="position:absolute; top: 100px; left: 750px;" for="googlefood">Google Food Score:</label>
+    <input style="position:absolute; top: 100px; left: 950px; width: 50px;" id="googlefood" type="text" readonly />
+    <label style="position:absolute; top: 150px; left: 750px;" for="googlecommunity">Google Community Score:</label>
+    <input style="position:absolute; top: 150px; left: 950px; width: 50px;" id="googlecommunity" type="text" readonly/>
+    <label style="position:absolute; top: 200px; left: 750px;" for="googlebigshops">Google Big Shops Score:</label>
+    <input style="position:absolute; top: 200px; left: 950px; width: 50px;" id="googlebigshops" type="text" readonly/>
+    <label style="position:absolute; top: 250px; left: 750px;" for="googlesmallshops">Google Small Shops Score:</label>
+    <input style="position:absolute; top: 250px; left: 950px; width: 50px;" id="googlesmallshops" type="text" readonly/>
 
-    <label style="position:absolute; top: 250px; left: 750px;" for="googletransit">Google Transit Score:</label>
-    <input style="position:absolute; top: 250px; left: 950px; width: 50px;" id="googletransit" type="text" readonly/>
+    <label style="position:absolute; top: 300px; left: 750px;" for="googletransit">Google Transit Score:</label>
+    <input style="position:absolute; top: 300px; left: 950px; width: 50px;" id="googletransit" type="text" readonly/>
 
-    <label style="position:absolute; top: 300px; left: 750px;" for="googletransit">Google Tourist Score:</label>
-    <input style="position:absolute; top: 300px; left: 950px; width: 50px;" id="googletourist" type="text" readonly/>
+    <label style="position:absolute; top: 350px; left: 750px;" for="googletransit">Google Tourist Score:</label>
+    <input style="position:absolute; top: 350px; left: 950px; width: 50px;" id="googletourist" type="text" readonly/>
 
-    <label style="position:absolute; top: 350px; left: 750px;" for="yelpfood">Yelp Food Score:</label>
-    <input style="position:absolute; top: 350px; left: 950px; width: 50px;" id="yelpfood" type="text" readonly/>
+    <label style="position:absolute; top: 400px; left: 750px;" for="yelpfood">Yelp Food Score:</label>
+    <input style="position:absolute; top: 400px; left: 950px; width: 50px;" id="yelpfood" type="text" readonly/>
 
-    <label style="position:absolute; top: 400px; left: 750px;" for="yelpshopping">Yelp Shopping Score:</label>
-    <input style="position:absolute; top: 400px; left: 950px; width: 50px;" id="yelpshopping" type="text" readonly/>
+    <label style="position:absolute; top: 450px; left: 750px;" for="yelpshopping">Yelp Shopping Score:</label>
+    <input style="position:absolute; top: 450px; left: 950px; width: 50px;" id="yelpshopping" type="text" readonly/>
 
-    <label style="position:absolute; top: 450px; left: 750px;" for="yelpcommunity">Yelp Community Score:</label>
-    <input style="position:absolute; top: 450px; left: 950px; width: 50px;" id="yelpcommunity" type="text" readonly/>
-
-
-    <label style="position:absolute; top: 500px; left: 750px;" for="walkscore">Walking Score:</label>
-    <input style="position:absolute; top: 500px; left: 950px; width: 50px;" id="walkscore" type="text" readonly/>
+    <label style="position:absolute; top: 500px; left: 750px;" for="yelpcommunity">Yelp Community Score:</label>
+    <input style="position:absolute; top: 500px; left: 950px; width: 50px;" id="yelpcommunity" type="text" readonly/>
 
 
-    <label style="position:absolute; top: 10px; left: 750px;" for="address">Address:</label>
-    <input style="position:absolute; top: 10px; left: 825px; width: 300px;" id="address" type="text" readonly/>
+    <label style="position:absolute; top: 550px; left: 750px;" for="walkscore">Walking Score:</label>
+    <input style="position:absolute; top: 550px; left: 950px; width: 50px;" id="walkscore" type="text" readonly/>
+
+
+    <label style="position:absolute; top: 600px; left: 750px;" for="address">Address:</label>
+    <input style="position:absolute; top: 600px; left: 825px; width: 300px;" id="address" type="text" readonly/>
 </form>
 
 <form>
-    <label style="position:absolute; top: 600px; left: 50px;" for="average">Average Score:</label>
-    <input style="position:absolute; top: 600px; left: 175px; width: 50px;" id="average" type="text" readonly/>
+    <label style="position:absolute; top: 90px; left: 450px;" for="average">Average Score:</label>
+    <input style="position:absolute; top: 90px; left: 600px; width: 50px;" id="average" type="text" readonly/>
 </form>
  
   <script>
@@ -411,7 +411,7 @@ function clone(obj) {
 </script>
 
 <!-- Dropdown menu for multiple heatmap layers  -->
-<form id = "layerselector" style="position:absolute; top: 30px; left: 500px;">
+<form id = "layerselector" style="position:absolute; top: 30px; left: 900px;">
   <div class="multiselect">
     <div class="selectBox" onclick="showCheckboxes()">
       <select>
@@ -476,8 +476,9 @@ function showCheckboxes() {
 </script>
 
 <!-- Searchbox -->
-  <input style="position:relative; top:10px; left:50px; width: 400px; height:20px" type="text" id = "mapsearch" placeholder="Enter a Location!"> 
-
+<div>
+  <input style="position:relative; top:20px; left:0px; width: 400px; height:20px" type="text" id = "mapsearch" placeholder="Enter a Location!"> 
+</div>
 
 <script> 
 /// Code for Searchbox ///
@@ -538,8 +539,9 @@ var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsea
 
   // Code for Dashed Recntangle //
 
-  var rect = L.rectangle([northeastcoord, southwestcoord], { dashArray: "10", color: "#4d4d4d",  opacity: .8,  fillOpacity: 0})
+  var rect = L.rectangle([northeastcoord, southwestcoord], { dashArray: "10", color: "#4d4d4d",  opacity: .8,  fillOpacity: 0});
   map.addLayer(rect);
+
 </script>
 
 
