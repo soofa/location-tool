@@ -22,7 +22,11 @@ You should also have the google maps javascript api enabled for your google key 
 
 ## How to Create Heatmaps:
 
-Navigate to the directory that you are working in and enter the following into the command line:
+You will first have to make sure your virtual environment is running python3. To make a virtual environment with python3, do 
+````bash
+virtualenv -p python3 envname
+````
+Then download all of the modules in requirements.txt. Navigate to the directory that you are working in and enter the following into the command line:
 
 ```` bash
 python3 CreateHeatMaps.py
