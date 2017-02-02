@@ -478,7 +478,7 @@ function showCheckboxes() {
 
 <!-- Searchbox -->
 <div>
-  <input style="position:relative; top:5px; left:0px; width: 400px; height:20px" type="text" id = "mapsearch" placeholder="Enter a Location!"> 
+  <input style="position:relative; top:5px; left:0px; width: 400px; height:20px; " type="text" id = "mapsearch" placeholder="Enter a Location!"> 
 </div>
 
 <script> 
@@ -487,8 +487,9 @@ function showCheckboxes() {
 var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
   google.maps.event.addListener(searchBox, 'places_changed', function(){
 
+for (var i = 0; i < searchBox.getPlaces().length; i++){
 
-  marker = new L.marker([searchBox.getPlaces()[0].geometry.location.lat(), searchBox.getPlaces()[0].geometry.location.lng()], {draggable:'true'});
+  marker = new L.marker([searchBox.getPlaces()[i].geometry.location.lat(), searchBox.getPlaces()[i].geometry.location.lng()], {draggable:'true'});
   marker.on('click', markerOnClick);
   markercontainer.push(marker);
 
@@ -520,6 +521,7 @@ var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsea
 
   });
   map.addLayer(marker);
+}
 
   });
 
