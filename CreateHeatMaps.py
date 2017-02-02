@@ -248,55 +248,62 @@ print('Starting Yelp Calculations')
 try:
     yelpscores, yelptags  = getYelpData(xvals, yvals, num_xsamples, num_ysamples)
     outputyelp = javascriptwriter(yelpscores, xvals, yvals, num_xsamples, num_ysamples, yelptags)
-    f = open('DataFiles/SoofaData' + city.split(",")[0] + 'yelpdata' + '.js', "w")  # Save data as you go along
+    f = open('SoofaData' + city.split(",")[0] + 'yelpdata' + '.js', "w")  # Save data as you go along
     f.write(outputyelp + '\n')
     f.close()
     print('Done with Yelp!')
 except:
     outputyelp = ""
-    print('Sorry, something went wrong. \n')
+    print('Sorry, yelp did not complete. \n')
 
 print('Starting Walk Score Calculations')
 
 try:
     walkscores, walktags = getWalkscoreData(xvals, yvals, num_xsamples, num_ysamples)
     outputwalkscore = javascriptwriter(walkscores, xvals, yvals, num_xsamples, num_ysamples, walktags)
-    f = open('DataFiles/SoofaData' + city.split(",")[0] + 'walkscoredata' + '.js', "w") # Save data as you go along
+    f = open('SoofaData' + city.split(",")[0] + 'walkscoredata' + '.js', "w") # Save data as you go along
     f.write(outputwalkscore + '\n')
     f.close()
     print('Done with Walkscore!')
 except:
     outputwalkscore = ""
-    print('Sorry, something went wrong. \n')
+    print('Sorry, walkscore did not complete. \n')
 
 
 print('Starting Google Calculations (This might take a long time.)')
 try:
     googlescores, googletags = getGoogleData(xvals, yvals, num_xsamples, num_ysamples)
     outputgoogle = javascriptwriter(googlescores, xvals, yvals, num_xsamples, num_ysamples, googletags)
-    f = open('DataFiles/SoofaData' + city.split(",")[0] + 'googledata' + '.js', "w") # Save data as you go along
+    f = open('SoofaData' + city.split(",")[0] + 'googledata' + '.js', "w") # Save data as you go along
     f.write(outputgoogle + '\n')
     f.close()
     print('Done with google!')
 except:
     outputgoogle = ""
-    print('Sorry, something went wrong.\n')
+    print('Sorry, google did not complete.\n')
 
+try:
 
-AllScores = [yelpscores, walkscores, googlescores]
-AllResults = []
+	print('Calculating Averge Data')
 
-for score in AllScores:
-	AllResults.extend(score.values())
+	AllScores = [yelpscores, walkscores, googlescores]
+	AllResults = []
 
-AvgResult = reduce((lambda x, y: np.add(x,y)), AllResults)
-AvgScore = {'averageData': AvgResult/len(AllResults)}
-AvgTags = {'averageData' : []}
-averageData = javascriptwriter(AvgScore, xvals, yvals, num_xsamples, num_ysamples, AvgTags)
+	for score in AllScores:
+		AllResults.extend(score.values())
 
+	AvgResult = reduce((lambda x, y: np.add(x,y)), AllResults)
+	AvgScore = {'averageData': AvgResult/len(AllResults)}
+	AvgTags = {'averageData' : []}
+	averageData = javascriptwriter(AvgScore, xvals, yvals, num_xsamples, num_ysamples, AvgTags)
+
+except:
+	
+	print('Sorry, average data could not be calculated')
+	averageData = ""
 
 print('Writing Data into File')
-try:  # If DataFiles is a valid folder
+try:  # If DataFiles is a valid subfolder
 	f = open('DataFiles/SoofaData' + city.split(",")[0] + '.js', "w")
 	f.write(outputyelp + '\n')
 	f.write(outputwalkscore + '\n')
