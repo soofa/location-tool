@@ -35,7 +35,7 @@ Enter location in city, state format (NewHaven, CT):
 ````
 
 Enter the city that you wish to create heatmaps for. Note that depending on the size of the city, this may take 
-anywhere from 15 minutes to multiple hours. Also, due to restrictions on the above apis, it is only possible to create heatmaps for 2-3  cities every day.
+anywhere from 15 minutes to multiple hours. Also, due to restrictions on the above apis, it is only possible to create heatmaps for 2-3  cities every day. Make sure that you have the walkscore.py file in the same folder. A small city that you can use for testing is Cuero, TX (typically takes 15 minutes to run).
 
 
 ## How to Visualize Heatmaps:
