@@ -248,6 +248,9 @@ print('Starting Yelp Calculations')
 try:
     yelpscores, yelptags  = getYelpData(xvals, yvals, num_xsamples, num_ysamples)
     outputyelp = javascriptwriter(yelpscores, xvals, yvals, num_xsamples, num_ysamples, yelptags)
+    f = open('DataFiles/SoofaData' + city.split(",")[0] + 'yelpdata' + '.js', "w")  # Save data as you go along
+    f.write(outputyelp + '\n')
+    f.close()
     print('Done with Yelp!')
 except:
     outputyelp = ""
@@ -258,6 +261,9 @@ print('Starting Walk Score Calculations')
 try:
     walkscores, walktags = getWalkscoreData(xvals, yvals, num_xsamples, num_ysamples)
     outputwalkscore = javascriptwriter(walkscores, xvals, yvals, num_xsamples, num_ysamples, walktags)
+    f = open('DataFiles/SoofaData' + city.split(",")[0] + 'walkscoredata' + '.js', "w") # Save data as you go along
+    f.write(outputwalkscore + '\n')
+    f.close()
     print('Done with Walkscore!')
 except:
     outputwalkscore = ""
@@ -268,6 +274,9 @@ print('Starting Google Calculations (This might take a long time.)')
 try:
     googlescores, googletags = getGoogleData(xvals, yvals, num_xsamples, num_ysamples)
     outputgoogle = javascriptwriter(googlescores, xvals, yvals, num_xsamples, num_ysamples, googletags)
+    f = open('DataFiles/SoofaData' + city.split(",")[0] + 'googledata' + '.js', "w") # Save data as you go along
+    f.write(outputgoogle + '\n')
+    f.close()
     print('Done with google!')
 except:
     outputgoogle = ""
@@ -287,8 +296,8 @@ averageData = javascriptwriter(AvgScore, xvals, yvals, num_xsamples, num_ysample
 
 
 print('Writing Data into File')
-try:
-	f = open('DataFiles/SoofaTestData' + city.split(",")[0] + '.js', "w")
+try:  # If DataFiles is a valid folder
+	f = open('DataFiles/SoofaData' + city.split(",")[0] + '.js', "w")
 	f.write(outputyelp + '\n')
 	f.write(outputwalkscore + '\n')
 	f.write(averageData + '\n')
@@ -302,7 +311,7 @@ try:
 	print('Writing Finished!')
 	print('Minutes taken: %f' %((time.time() - start)/60.0))
 except:
-	f = open('SoofaTestData' + city.split(",")[0] + '.js', "w")
+	f = open('SoofaData' + city.split(",")[0] + '.js', "w")
 	f.write(outputyelp + '\n')
 	f.write(outputwalkscore + '\n')
 	f.write(averageData + '\n')
