@@ -55,7 +55,7 @@ HeatMap.html and search for id = "selectcity". There, you will need to add the f
  <option value="Cityname">Cityname, State</option>
  ````
 
- Then, open HeatMap.html with Google Chrome. You will see a menu called 'Cities.' Click on this menu and then click on your city. This will update the map view and you will be able to see the heatmaps for your city. Note: The current heatmap view is relative so once you zoom in/out of the map, the heatmap is regenerated. This means that a if you change how the map looks (zoom/move the map), the heatmap will also change. To change this, go to HeatMap.html and locate
+ Then, open HeatMap.html with Google Chrome. You will see a menu called 'Pick a City.' Click on this menu and then click on your city. This will update the map view and you will be able to see the heatmaps for your city by selecting from the 'Pick Heatmap Layers!' menu. Note: The current heatmap view is relative so once you zoom in/out of the map, the heatmap is regenerated. This means that a if you change how the map looks (zoom/move the map), the heatmap will also change. To change this, go to HeatMap.html and locate
 
  ````javascript
  var cfg1 = ...
