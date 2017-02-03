@@ -9,11 +9,11 @@ yelp_Token = Your Yelp Token
 
 yelp_TokenSecret = Your Yelp Token Secret
 
-google_API_KEY = Your Google Maps Webservice API Key
+google_API_KEY = Your Google Maps WEBSERVICE API Key
 
 walkscore_api = Your Walk Score API key
 
-You should also have the google maps javascript api enabled for your google key above. You can then insert your key into line 83 of HeatMap.html. This key is used to display the address of the markers in the map. 
+You should also have the Google maps JAVASCRIPT api enabled for your Google key above. The WEBSERVICE api is used in the CreateHeatMaps.py script while the JAVASCRIPT api is used to generate addresses for markers in the web application. Once you activate the javascript api for your key, you can insert it into line 114 of HeatMap.html. 
 
 ````HTML
  <script src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEY&libraries=places"
@@ -43,13 +43,13 @@ Enter location in city, state format (NewHaven, CT):
 ````
 
 Enter the city that you wish to create heatmaps for. Note that depending on the size of the city, this may take 
-anywhere from 15 minutes to multiple hours. Also, due to restrictions on the above apis, it is only possible to create heatmaps for 2-3  cities every day. Make sure that you have the walkscore.py file in the same folder. A small city that you can use for testing is Cuero, TX (typically takes 15 minutes to run).
+anywhere from 15 minutes to multiple hours. Also, due to restrictions on the above apis, it is only possible to create heatmaps for 2-3  cities every day. Make sure that you have the walkscore.py file in the same folder. A small city that you can use for testing is Cuero, TX (typically takes 15 minutes to run). If the city is too large (more than a few hundred square miles in area), then it is likely that the api limits will not be enough to run the code for the city. Look at the error messages to see which api returned an error. You might need to buy a premium plan for that api. (This will most likely be the Google maps api).
 
 
 ## How to Visualize Heatmaps:
 
 After CreateHeatMaps.py finishes, a file called 'SoofaDataYOURCITY.js' will be created in the DataFiles folder. Now open
-HeatMap.html and go to line 56 (or search for id = "selectcity"). There, you will need to add the following code to see the heatmaps for your city:
+HeatMap.html and search for id = "selectcity". There, you will need to add the following code to see the heatmaps for your city:
 
 ```` HTML
  <option value="Cityname">Cityname, State</option>
