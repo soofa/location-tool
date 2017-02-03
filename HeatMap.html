@@ -297,7 +297,7 @@ function onMapClick(e) {
 function markerOnClick(e)
 {
    for (var name in AllScores){
-    document.getElementById(name).value = calculatescore(e.latlng.lat,e.latlng.lat, AllScores[name]); 
+    document.getElementById(name).value = calculatescore(e.latlng.lat,e.latlng.lng, AllScores[name]); 
   }
 
   var currlocation = geocodeLatLng(geocoder, e.latlng.lat, e.latlng.lng);
@@ -389,7 +389,6 @@ function calculatescore(lat, lng, heatmapdata){
     document.getElementById(name).value = "";
   }
     document.getElementById('address').value = "";
-    showCheckboxes();
     };
 
 }
