@@ -297,8 +297,11 @@ function onMapClick(e) {
 function markerOnClick(e)
 {
    for (var name in AllScores){
-    document.getElementById(name).value = calculatescore(e.latlng.lat,e.latlng.lng, AllScores[name]); 
+    document.getElementById(name).value = calculatescore(e.latlng.lat,e.latlng.lat, AllScores[name]); 
   }
+
+  var currlocation = geocodeLatLng(geocoder, e.latlng.lat, e.latlng.lng);
+
   map.panTo(new L.LatLng(e.latlng.lat, e.latlng.lng));
 }
 
