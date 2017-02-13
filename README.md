@@ -1,3 +1,11 @@
+# Location Tool
+
+This is a web app created by intern Sandeep Sandwil over January, 2017 as part of an IAP externship. It allows users to explore the potential of different locations in a city for hosting a Soofa Sign by calculating metrics based on Google Maps, Yelp, and Walk Score data.
+
+## Hosting
+
+This app is hosted with Firebase and is owned by the devops@soofa.co account. Contact Ed Borden for more details. You can find it here: https://soofaiap.firebaseapp.com/
+
 ## Api Keys:
 You will need a .env file in your local environment with api keys defined as the following:
 
