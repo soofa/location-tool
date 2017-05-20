@@ -6,6 +6,26 @@ This is a web app created by intern Sandeep Sandwil over January, 2017 as part o
 
 This app is hosted with Firebase and is owned by the devops@soofa.co account. Contact Ed Borden for more details. You can find it here: https://soofaiap.firebaseapp.com/
 
+## Experimental: Flask Backend
+
+### Development Workflow
+
+```
+# Install app as a python package. From the root directory of this repo:
+pip install --editable .
+# editable flag allows editing source code without having to reinstall the Flask app each time you make changes
+
+# start up the application
+export FLASK_APP=location_tool
+export FLASK_DEBUG=true
+flask run
+```
+
+The `FLASK_DEBUG` flag enables or disables the interactive debugger. Never leave debug mode activated in a production system, because it will allow users to execute code on the server!
+
+Source: http://flask.pocoo.org/docs/0.12/tutorial/packaging/
+
+
 ## Api Keys:
 You will need a .env file in your local environment with api keys defined as the following:
 
