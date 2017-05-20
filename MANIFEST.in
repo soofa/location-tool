@@ -1,0 +1,2 @@
+graft location_tool/templates
+graft location_tool/static
