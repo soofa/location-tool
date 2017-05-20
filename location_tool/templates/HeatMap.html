@@ -106,8 +106,8 @@
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 
 <!--   This is for heatmap.js. (Must be in the same folder. If not, change the path!) -->
-  <script src="heatmap.js"></script>
-  <script src="leaflet-heatmap.js"></script>
+  <script src={{ url_for("static", filename="heatmap.js") }}></script>
+  <script src={{ url_for("static", filename="leaflet-heatmap.js") }}></script>
 
 
   <!-- Set up Google Maps Javascript API -->
@@ -145,7 +145,7 @@
 
 
   <!--  Default  Data File -->   
-  <script src="DataFiles/SoofaDataCambridge.js"></script>  
+  <script src={{ url_for("static", filename="DataFiles/SoofaDataCambridge.js") }}></script>
 
 
 <!-- Set up score displays -->
@@ -371,7 +371,10 @@ function calculatescore(lat, lng, heatmapdata){
  <script type="text/javascript">
   document.getElementById('selectcity').onchange = function(){
     var myScript = document.createElement('script');
-    myScript.setAttribute('src', 'DataFiles/SoofaData' + this.value.split(" ")[0] + '.js');
+    myScript.setAttribute('src', "{{ url_for('static', filename='DataFiles/') }}");
+    var cityName = this.value.split(" ")[0];
+    var cityDataFile = 'SoofaData' + cityName + '.js';
+    myScript.setAttribute('src', myScript.getAttribute('src') + cityDataFile);
     document.head.appendChild(myScript);
     myScript.onload = function() {
     compositelayer.setData({max:0, data: []});
