@@ -16,13 +16,11 @@ create role location_tool with login password 'password';
 create database location_tool_development;
 create database location_tool_test;
 
-# in python
->>> import location_tool.database as db
->>> db.init_db() # create DB and tables for models
-
 # Install app as a python package. From the root directory of this repo:
 pip install --editable .
 # editable flag allows editing source code without having to reinstall the Flask app each time you make changes
+
+flask initdb
 
 # start up the application
 export FLASK_APP=location_tool
