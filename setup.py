@@ -12,5 +12,6 @@ setup(
         'yelp',
         'googlemaps',
         'python-dotenv',
+        'celery',
     ],
 )

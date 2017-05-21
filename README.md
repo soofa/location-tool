@@ -16,13 +16,27 @@ create role location_tool with login password 'password';
 create database location_tool_development;
 create database location_tool_test;
 
+# RabbitMQ for celery backend
+brew install rabbitmq
+PATH=$PATH:/usr/local/sbin # optional, can also configure rabbit to run on system start
+rabbitmq-server
+rabbitmqctl add_user location_tool password
+rabbitmqctl add_vhost location_tool_vhost
+rabbitmqctl set_user_tags location_tool location_tool_tag
+rabbitmqctl set_permissions -p location_tool_vhost location_tool ".*" ".*" ".*"
+
+
 # Install app as a python package. From the root directory of this repo:
 pip install --editable .
 # editable flag allows editing source code without having to reinstall the Flask app each time you make changes
 
+# setup schema in postgres DB
 flask initdb
 
-# start up the application
+# run celery application for background processing
+celery -A location_tool.tasks worker --loglevel=info
+
+# start up the web application
 export FLASK_APP=location_tool
 export FLASK_DEBUG=true
 flask run
