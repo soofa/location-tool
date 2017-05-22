@@ -22,4 +22,7 @@ var/
 .installed.cfg
 *.egg
 
+# javascript
+node_modules/*
+
 notes
