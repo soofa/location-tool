@@ -30,9 +30,10 @@ def heat_maps():
 
 @app.route('/bounding-box-entry')
 def bounding_box_entry():
-    bounding_boxes = db_session.query(models.BoundingBox).filter(
-        models.BoundingBox.state=='ready'
-    ).order_by(models.BoundingBox.created_at.desc()).limit(10).all()
+    bounding_boxes = db_session.query(models.BoundingBox).\
+            order_by(models.BoundingBox.created_at.desc()).\
+            limit(10).\
+            all()
     return render_template('BoundingBox.html', bounding_boxes=bounding_boxes)
 
 @app.route('/bounding-boxes', methods=['POST'])

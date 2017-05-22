@@ -24,5 +24,6 @@ var/
 
 # javascript
 node_modules/*
+**/bundle.js
 
 notes

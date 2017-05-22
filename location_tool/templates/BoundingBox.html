@@ -21,14 +21,14 @@
                     <div id="map" style="width: 100%; height: 85%; border: 1px solid #ccc"></div>
                 </div>
                 <div class="six wide column">
-                    <div class="ui disabled fluid action input">
-                        <input type="text" placeholder="Name">
-                        <div class="ui disabled blue button">Create</div>
+                    <div id="bb-name-input" class="ui disabled fluid action input">
+                        <input id="bb-name-input-field" type="text" placeholder="Enter Name">
+                        <div id="bb-create-button", class="ui disabled blue button">Create</div>
                     </div>
 
                     <div class="ui hidden divider"></div>
                     <h3 class="ui centered header">Latest Bounding Boxes</h3>
-                    <table class="ui celled table">
+                    <table id="latest-bb-table" class="ui celled table">
                       <thead>
                         <tr><th>Name</th>
                         <th>Created</th>
@@ -47,6 +47,7 @@
                 </div>
             </div>
         </div>
+        <script src="{{ url_for('static', filename='bundle.js') }}"></script>
         <script>
             var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -72,6 +73,12 @@
             map.on(L.Draw.Event.CREATED, function (event) {
                 var layer = event.layer;
                 drawnItems.addLayer(layer);
+                window.currentBoundingBox = BBE.handleDrawEvent(event.layer);
+
+                document.getElementById('bb-name-input')
+                    .classList.remove('disabled');
+                document.getElementById('bb-create-button')
+                    .classList.remove('disabled');
             });
         </script>
     </body>

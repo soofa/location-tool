@@ -33,7 +33,10 @@ class LocationToolTestCase(unittest.TestCase):
         truncate_database(db_session)
         post_data = json.dumps({
             'name': 'Test Bounding Box',
-            'coordinates': {}
+            'coordinates': {
+                'northEast': { 'lat': 1.0, 'lng': -2.0 },
+                'southWest': { 'lat': 3.0, 'lng': -4.0 }
+            }
         })
         rv = self.app.post('/bounding-boxes',
                            data=post_data,
@@ -45,7 +48,8 @@ class LocationToolTestCase(unittest.TestCase):
         post_data = json.dumps({
             'name': 'Test Bounding Box',
             'coordinates': {
-                'northwest': { 'lat': 1.0, 'lng': -2.0 }
+                'northEast': { 'lat': 1.0, 'lng': -2.0 },
+                'southWest': { 'lat': 3.0, 'lng': -4.0 }
             }
         })
         rv = self.app.post('/bounding-boxes',
@@ -60,7 +64,10 @@ class LocationToolTestCase(unittest.TestCase):
         truncate_database(db_session)
         post_data = json.dumps({
             'name': 'Test Bounding Box',
-            'coordinates': {}
+            'coordinates': {
+                'northEast': { 'lat': 1.0, 'lng': -2.0 },
+                'southWest': { 'lat': 3.0, 'lng': -4.0 }
+            }
         })
         rv = self.app.post('/bounding-boxes',
                            data=post_data,
