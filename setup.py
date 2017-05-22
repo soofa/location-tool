@@ -6,12 +6,13 @@ setup(
     include_package_data=True,
     install_requires=[
         'flask',
+        'celery',
         'sqlalchemy',
         'psycopg2',
+        'alembic',
         'numpy',
         'yelp',
         'googlemaps',
         'python-dotenv',
-        'celery',
     ],
 )
