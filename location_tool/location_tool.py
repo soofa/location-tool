@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
-from location_tool.database import init_db, db_session
+from location_tool.database import db_session
 from location_tool import tasks
 
 app = Flask(__name__)
@@ -16,12 +16,6 @@ else:
 @app.teardown_appcontext
 def shutdown_session(exception=None):
     db_session.remove()
-
-@app.cli.command('initdb')
-def initdb_command():
-    """Initializes the database."""
-    init_db()
-    print('Initialized the database.')
 
 @app.route('/')
 def home_page():
