@@ -35,11 +35,13 @@
                         <th>Status</th>
                       </tr></thead>
                       <tbody>
-                        <tr>
-                          <td>Somerville</td>
-                          <td>2017-05-21</td>
-                          <td>READY</td>
-                        </tr>
+                          {% for bb in bounding_boxes %}
+                          <tr>
+                              <td>{{bb.name}}</td>
+                              <td>{{bb.created_at.strftime('%Y-%m-%d')}}</td>
+                              <td>{{bb.state}}</td>
+                          </tr>
+                          {% endfor %}
                       </tbody>
                     </table>
                 </div>

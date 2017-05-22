@@ -19,5 +19,7 @@ class BoundingBox(Base):
     state = Column(Text, nullable=False)
     coordinates = Column(postgresql.JSON, nullable=False)
 
-    def __init__(self):
-        pass
+    def __init__(self, name=None, state='created', coordinates=None):
+        self.name = name
+        self.state = state
+        self.coordinates = coordinates

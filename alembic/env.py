@@ -23,10 +23,12 @@ target_metadata = models.Base.metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-if os.environ.get('APP_CONFIG_FILE') is not None:
-    app_config = importlib.import_module(os.environ.get('APP_CONFIG_FILE'))
+if os.environ.get('APP_ENVIRONMENT') is not None:
+    config_module = importlib.import_module(
+        'config.{}'.format(os.environ.get('APP_ENVIRONMENT'))
+    )
 else:
-    app_config = importlib.import_module('config.development')
+    config_module = importlib.import_module('config.development')
 
 
 def run_migrations_offline():
@@ -42,7 +44,7 @@ def run_migrations_offline():
 
     """
     #url = config.get_main_option("sqlalchemy.url")
-    url = app_config.DATABASE
+    url = config_module.DATABASE
     context.configure(
         url=url, target_metadata=target_metadata, literal_binds=True)
     print("INFO database: {}".format(url))
@@ -58,7 +60,7 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
-    url = app_config.DATABASE
+    url = config_module.DATABASE
     connectable = create_engine(url)
 
     print("INFO database: {}".format(connectable.url))
