@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://unpkg.com/semantic-ui@2.2.10/dist/semantic.min.css" />
+        <style>
+            .container {
+                margin: 5%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+        <div class="ui huge link list">
+            <div class="active item"><a class="item" href="{{ url_for('home_page')}}">Home</div>
+          <a class="item"<a class="item" href="{{ url_for('bounding_box_entry')}}">Bounding Box Entry</a>
+          <a class="item" href="{{ url_for('heat_maps')}}">Heat Maps</a>
+        </div>
+        </div>
+    </body>
+</html>

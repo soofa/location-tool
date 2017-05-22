@@ -24,7 +24,11 @@ def initdb_command():
     print('Initialized the database.')
 
 @app.route('/')
-def location_tool():
+def home_page():
+    return render_template('HomePage.html')
+
+@app.route('/heat-maps')
+def heat_maps():
     return render_template('HeatMap.html')
 
 @app.route('/bounding-box-entry')
