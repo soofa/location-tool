@@ -104,7 +104,7 @@ def bounding_box_js(bounding_box_id):
         fakeData = ",".join([
             "{{ lat : {lat}, lng: {lng}, count: 0 }}".format(
                 lat=lat, lng=lng
-            ) for lat, lng in zip(yvals, xvals)])
+            ) for lat in yvals for lng in xvals])
 
         outputyelp = """
         var yelpfoodData = {max: 0, data: [%s]};
