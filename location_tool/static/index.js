@@ -19,14 +19,21 @@ function addBoundingBoxRow(tableID, data) {
     newCell.appendChild(newText);
 }
 
-function postBoundingBox(bb, button) {
+function resetInput(nameInputContainer, nameInput, button) {
+    button.classList.remove('loading');
+    button.classList.add('disabled');
+    nameInput.value = "";
+    nameInputContainer.classList.add('disabled');
+}
+
+function postBoundingBox(bb, nameInputContainer, nameInput, button) {
     BBE.create(bb).
         then(function(response) {
-            button.classList.remove('loading');
+            resetInput(nameInputContainer, nameInput, button);
             addBoundingBoxRow("latest-bb-table", response.data);
         }).
         catch(function(response) {
-            button.classList.remove('loading');
+            resetInput(nameInputContainer, nameInput, button);
             alert('Bounding Box Creation failed');
         });
 }
@@ -38,10 +45,11 @@ function initializeBoundingBoxEntry() {
     var button = document.getElementById('bb-create-button');
     button.addEventListener('click', function(event) {
         var bb = window.currentBoundingBox;
+        var nameInputContainer = document.getElementById('bb-name-input');
         var nameInput = document.getElementById('bb-name-input-field');
         bb.name = nameInput.value;
         button.classList.add('loading');
-        postBoundingBox(bb, button);
+        postBoundingBox(bb, nameInputContainer, nameInput, button);
     });
 }
 
