@@ -10,6 +10,8 @@ This app is hosted with Firebase and is owned by the devops@soofa.co account. Co
 
 ### Development Workflow
 
+#### Prepare Dev Environment
+
 ```
 # in psql
 create role location_tool with login password 'password';
@@ -37,10 +39,24 @@ APP_ENVIRONMENT=test alembic upgrade head # pre test DB
 # run celery application for background processing
 celery -A location_tool.tasks worker --loglevel=info
 
+# install javascript dependencies
+yarn install
+# compile javascript into serve-able asset using webpack
+yarn build
+
 # start up the web application
 export FLASK_APP=location_tool
 export FLASK_DEBUG=true
 flask run
+```
+
+#### Run Tests
+```
+# if rabbit is not running you will get connect failures
+# TODO: config celery test mode to avoid that problem
+rabbitmq-server
+yarn run test # client
+python tests/location_tool_test.py # server
 ```
 
 The `FLASK_DEBUG` flag enables or disables the interactive debugger. Never leave debug mode activated in a production system, because it will allow users to execute code on the server!
