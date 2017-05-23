@@ -31,7 +31,7 @@ def home_page():
 def heat_maps():
     bounding_boxes = db_session.query(models.BoundingBox).\
             order_by(models.BoundingBox.name).\
-            filter(models.BoundingBox.state == 'processing').\
+            filter(models.BoundingBox.state == 'ready').\
             all()
     return render_template('HeatMap.html', bounding_boxes=bounding_boxes)
 
@@ -65,12 +65,18 @@ def bounding_boxes():
         print(exc)
         return json.dumps({}), 422
 
-@app.route('/bounding-boxes/<int:bounding_box_id>')
+@app.route('/bounding-boxes/<bounding_box_id>')
 def bounding_box_js(bounding_box_id):
     try:
-        bounding_box = db_session.query(models.BoundingBox).get(bounding_box_id)
+        bounding_box = db_session.query(models.BoundingBox).\
+                filter(models.BoundingBox.id == int(bounding_box_id)).\
+                filter(models.BoundingBox.state == 'ready').\
+                first()
     except:
-        return "", 404
+        if bounding_box_id == 'default':
+            return app.send_static_file('DataFiles/SoofaDataCambridge.js')
+        else:
+            return "", 404
 
     try:
         coordinates = ast.literal_eval(bounding_box.coordinates)
@@ -95,15 +101,20 @@ def bounding_box_js(bounding_box_id):
         )
 
         #TODO: create data fetch tasks for yelp and walkscore
+        fakeData = ",".join([
+            "{{ lat : {lat}, lng: {lng}, count: 0 }}".format(
+                lat=lat, lng=lng
+            ) for lat, lng in zip(yvals, xvals)])
+
         outputyelp = """
-        var yelpfoodData = {max: 0, data: []};
-        var yelpshoppingData = {max: 0, data: []};
-        var yelpcommunityData= {max: 0, data: []};
-        """
+        var yelpfoodData = {max: 0, data: [%s]};
+        var yelpshoppingData = {max: 0, data: [%s]};
+        var yelpcommunityData= {max: 0, data: [%s]};
+        """ % (fakeData, fakeData, fakeData)
 
         outputwalkscore = """
-        var walkscoreData = {max: 0, data: []};
-        """
+        var walkscoreData = {max: 0, data: [%s]};
+        """ % (fakeData)
 
         #AllScores = [yelpscores, walkscores, googlescores]
         AllScores = [googlescores]

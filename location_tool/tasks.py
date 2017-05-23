@@ -27,6 +27,7 @@ def get_google_data(bounding_box_id):
         }
         bounding_box.googletags = str(googletags)
         bounding_box.googlescores = str(list_googlescores)
+        bounding_box.state = 'ready'
         db_session.commit()
         return googletags
     except Exception as exc:
