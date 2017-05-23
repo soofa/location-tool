@@ -88,13 +88,9 @@
 <form style="position:absolute; top: 75px; left: 450px;" >
     <select  id="selectcity">
         <option value="default">Pick a City!</option>
-        <option value="Cambridge">Cambridge, MA</option>
-        <option value="Providence">Providence, RI</option>
-        <option value="Trenton">Trenton, NJ</option>
-        <option value="Cuero">Cuero, TX</option>
-        <option value="Portage">Portage, MI</option>
-        <option value="Lafayette">Lafayette, LA</option>
-        <option value="ArlingtonHeights">Arlington Heights, IL</option>
+        {% for bb in bounding_boxes %}
+        <option value="{{bb.id}}">{{bb.name}}</option>
+        {% endfor %}
     </select>
 </form>
 
@@ -369,12 +365,10 @@ function calculatescore(lat, lng, heatmapdata){
 
 <!-- Code for changing cities, resets all values and markers  -->
  <script type="text/javascript">
-  document.getElementById('selectcity').onchange = function(){
+  document.getElementById('selectcity').onchange = function(event){
+    var bounding_box_id =  event.target.value;
     var myScript = document.createElement('script');
-    myScript.setAttribute('src', "{{ url_for('static', filename='DataFiles/') }}");
-    var cityName = this.value.split(" ")[0];
-    var cityDataFile = 'SoofaData' + cityName + '.js';
-    myScript.setAttribute('src', myScript.getAttribute('src') + cityDataFile);
+    myScript.setAttribute('src', '/bounding-boxes/' + bounding_box_id);
     document.head.appendChild(myScript);
     myScript.onload = function() {
     compositelayer.setData({max:0, data: []});

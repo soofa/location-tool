@@ -31,7 +31,8 @@ pip install --editable .
 # editable flag allows editing source code without having to reinstall the Flask app each time you make changes
 
 # setup schema in postgres DB
-alembic upgrade head
+alembic upgrade head # defaults to development
+APP_ENVIRONMENT=test alembic upgrade head # pre test DB
 
 # run celery application for background processing
 celery -A location_tool.tasks worker --loglevel=info

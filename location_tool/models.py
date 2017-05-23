@@ -18,9 +18,12 @@ class BoundingBox(Base):
     name = Column(Text, nullable=False)
     state = Column(Text, nullable=False)
     coordinates = Column(postgresql.JSON, nullable=False)
-    output_google = Column(Text)
+    samples = Column(Text)
+    googlescores = Column(Text)
+    googletags = Column(Text)
 
-    def __init__(self, name=None, state='created', coordinates=None):
+    def __init__(self, name=None, state='created', coordinates=None, samples=None):
         self.name = name
         self.state = state
         self.coordinates = coordinates
+        self.samples = samples

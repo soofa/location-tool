@@ -34,8 +34,8 @@ class LocationToolTestCase(unittest.TestCase):
         post_data = json.dumps({
             'name': 'Test Bounding Box',
             'coordinates': {
-                'northEast': { 'lat': 1.0, 'lng': -2.0 },
-                'southWest': { 'lat': 3.0, 'lng': -4.0 }
+                'northEast': { 'lat': 3.0, 'lng': -2.0 },
+                'southWest': { 'lat': 1.0, 'lng': -4.0 }
             }
         })
         rv = self.app.post('/bounding-boxes',
@@ -48,8 +48,8 @@ class LocationToolTestCase(unittest.TestCase):
         post_data = json.dumps({
             'name': 'Test Bounding Box',
             'coordinates': {
-                'northEast': { 'lat': 1.0, 'lng': -2.0 },
-                'southWest': { 'lat': 3.0, 'lng': -4.0 }
+                'northEast': { 'lat': 3.0, 'lng': -2.0 },
+                'southWest': { 'lat': 1.0, 'lng': -4.0 }
             }
         })
         rv = self.app.post('/bounding-boxes',
@@ -59,6 +59,30 @@ class LocationToolTestCase(unittest.TestCase):
             models.BoundingBox.name == 'Test Bounding Box'
         ).count()
         self.assertEqual(count, 1)
+
+    def test_create_bounding_box_transforms_coordinates(self):
+        truncate_database(db_session)
+        post_data = json.dumps({
+            'name': 'Test Bounding Box',
+            'coordinates': {
+                'northEast': { 'lat': 3.0, 'lng': -2.0 },
+                'southWest': { 'lat': 1.0, 'lng': -4.0 }
+            }
+        })
+        rv = self.app.post('/bounding-boxes',
+                           data=post_data,
+                           headers={'content-type':'application/json'})
+        bounding_box = models.BoundingBox.query.filter(
+            models.BoundingBox.name == 'Test Bounding Box'
+        ).first()
+        transformed = {
+            'northeast': { 'lat': 3.0, 'lng': -2.0 },
+            'northwest': { 'lat': 3.0, 'lng': -4.0 },
+            'southwest': { 'lat': 1.0, 'lng': -4.0 },
+            'southeast': { 'lat': 1.0, 'lng': -2.0 },
+            'center': { 'lat': 2.0, 'lng': -3.0 }
+        }
+        self.assertEqual(bounding_box.coordinates, transformed)
 
     def test_create_bounding_box_returns_new_record(self):
         truncate_database(db_session)

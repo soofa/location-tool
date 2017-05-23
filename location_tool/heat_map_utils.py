@@ -52,14 +52,13 @@ def javascriptwriter(scores, xvals, yvals, num_xsamples, num_ysamples, All_tags)
     return (output)
 
 ######## Set up coordinate grid ###########################
-def prepare_query(bounding_box):
-    sampling_rate = 500      # Sample every 500 meters in both x and y directions
-    coordinates = bounding_box.coordinates
-    northeast_coord = coordinates['northEast']
-    southwest_coord = coordinates['southWest']
+def transform_coordinates(raw_coordinates):
+    northeast_coord = raw_coordinates['northEast']
+    southwest_coord = raw_coordinates['southWest']
     northwest_coord = {'lat': northeast_coord['lat'], 'lng': southwest_coord['lng']}
     southeast_coord = {'lat': southwest_coord['lat'], 'lng': northeast_coord['lng']}
 
+    #TODO ensure center coord computation works everywhere on the globe
     if northeast_coord['lat'] >= 0 and southeast_coord['lat'] >= 0:
         lat_diff = northeast_coord['lat'] - southeast_coord['lat']
     elif northeast_coord['lat'] < 0 and southeast_coord['lat'] < 0:
@@ -70,26 +69,37 @@ def prepare_query(bounding_box):
     if northeast_coord['lng'] >= 0 and northwest_coord['lng'] >= 0:
         lng_diff = northeast_coord['lng'] - northwest_coord['lng']
     elif northeast_coord['lng'] < 0 and northwest_coord['lng'] < 0:
-        lng_diff = northwest_coord['lng'] - northeast_coord['lng']
+        lng_diff = (northwest_coord['lng'] - northeast_coord['lng'])
     else:
-        lng_diff = abs(northeast_coord['lng']) + abs(southeast_coord['lng'])
+        lng_diff = abs(northeast_coord['lng']) + abs(southeast_coord['lng']) * -1
 
     center_coord = {
         'lat': southeast_coord['lat'] + (lat_diff / 2),
-        'lng': southwest_coord['lng'] + (lng_diff / 2)
+        'lng': southeast_coord['lng'] + (lng_diff / 2)
     }
+
+    return {
+        'northeast': northeast_coord,
+        'northwest': northwest_coord,
+        'southwest': southwest_coord,
+        'southeast': southeast_coord,
+        'center': center_coord
+    }
+
+def prepare_query(coordinates):
+    sampling_rate = 500      # Sample every 500 meters in both x and y directions
+    northeast_coord = coordinates['northeast']
+    northwest_coord = coordinates['northeast']
+    southwest_coord = coordinates['southwest']
+    southeast_coord = coordinates['southeast']
     xdist = CalculateDistance(southwest_coord, southeast_coord)
     ydist = CalculateDistance(northeast_coord, southeast_coord)
     num_xsamples = int(np.round(xdist/sampling_rate))
     num_ysamples = int(np.round(ydist/sampling_rate))
-    xvals = np.linspace(southwest_coord['lng'], southeast_coord['lng'], num_xsamples)
-    yvals = np.linspace(southeast_coord['lat'], northeast_coord['lat'], num_ysamples)
+    xvals = np.linspace(southwest_coord['lng'], southeast_coord['lng'], num_xsamples).tolist()
+    yvals = np.linspace(southeast_coord['lat'], northeast_coord['lat'], num_ysamples).tolist()
 
     return {
-        'northeast_coord': northeast_coord,
-        'southwest_coord': southwest_coord,
-        'southeast_coord': southeast_coord,
-        'center_coord': center_coord,
         'xdist': xdist,
         'ydist': ydist,
         'num_xsamples': num_xsamples,
