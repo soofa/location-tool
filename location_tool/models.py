@@ -12,12 +12,13 @@ class BoundingBox(Base):
                         )
     updated_at = Column(DateTime(timezone=True),
                         nullable=False,
-                        server_default=text("select current_timestamp at time zone 'UTC'"),
-                        onupdate=text("select current_timestamp at time zone 'UTC'")
+                        server_default=text("(select current_timestamp at time zone 'UTC')"),
+                        onupdate=text("(select current_timestamp at time zone 'UTC')")
                         )
     name = Column(Text, nullable=False)
     state = Column(Text, nullable=False)
     coordinates = Column(postgresql.JSON, nullable=False)
+    output_google = Column(Text)
 
     def __init__(self, name=None, state='created', coordinates=None):
         self.name = name
