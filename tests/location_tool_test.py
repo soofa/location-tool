@@ -82,7 +82,7 @@ class LocationToolTestCase(unittest.TestCase):
             'southeast': { 'lat': 1.0, 'lng': -2.0 },
             'center': { 'lat': 2.0, 'lng': -3.0 }
         }
-        self.assertEqual(bounding_box.coordinates, transformed)
+        self.assertEqual(bounding_box.coordinates, str(transformed))
 
     def test_create_bounding_box_returns_new_record(self):
         truncate_database(db_session)
