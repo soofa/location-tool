@@ -87,7 +87,7 @@
 <!-- Dropdown menu for cities. This is where you add a new city!  -->
 <form style="position:absolute; top: 75px; left: 450px;" >
     <select  id="selectcity">
-        <option value="default">Pick a City!</option>
+        <option value="default">Pick a Bounding Box!</option>
         {% for bb in bounding_boxes %}
         <option value="{{bb.id}}">{{bb.name}}</option>
         {% endfor %}
