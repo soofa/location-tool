@@ -1,12 +1,16 @@
+import sys
 import ast
 import numpy as np
 from celery import Celery
+from celery.utils.log import get_task_logger
 from location_tool.database import db_session
 from location_tool import models
 import location_tool.heat_map_utils as hmu
 
 app = Celery('tasks')
 app.config_from_object('location_tool.celeryconfig')
+
+logger = get_task_logger(__name__)
 
 @app.task
 def get_google_data(bounding_box_id):
@@ -29,7 +33,12 @@ def get_google_data(bounding_box_id):
         bounding_box.googlescores = str(list_googlescores)
         bounding_box.state = 'ready'
         db_session.commit()
+        logger.info('get_google_data succeeded')
         return googletags
     except Exception as exc:
-        print(exc)
+        if bounding_box is not None:
+            bounding_box.state = 'failed'
+            db_session.commit()
+
+        logger.error('get_google_data failed: {}'.format(sys.exc_info()))
         return {}
